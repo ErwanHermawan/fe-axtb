@@ -1,0 +1,51 @@
+//-------------------------------------------------------------------------------
+  @name: Auth
+  -------------------------------------------------------------------------------//
+
+//auth
+.auth(class=(dataAuth.modifier !== undefined ? 'auth--'+dataAuth.modifier : ''))
+  .container
+    .auth__wrapper
+      if dataAuth.bg !== undefined
+        .auth__img
+          img.auth__img__el(src="assets/img/dummy/"+dataAuth.bg.src, alt=dataAuth.bg.alt)/
+      .auth__form
+        .auth__form__box
+          .auth__form__logo
+            ='\n'
+            img.auth__form__logo__el(src="assets/img/logo/"+dataAuth.logo.src, alt=dataAuth.logo.alt)/
+          .auth__form__title
+            p.auth__form__title__info eCommerce
+            h3.auth__form__title__desc API Integration Simulation
+          if dataAuth.head !== undefined
+            .auth__form__desc
+              h5.auth__form__desc__sign !{dataAuth.head.title}
+              p.auth__form__desc__info !{dataAuth.head.desc}
+          if dataAuth.alert !== undefined
+            .alert(class="alert--"+dataAuth.alert.type)
+              .alert__wrapper
+                i.alert__icon(class="mdi mdi-"+dataAuth.alert.icon)
+                p.alert__text !{dataAuth.alert.text}
+          //form
+          if dataInput !== undefined
+            form
+              each val in dataInput
+                - data = val;
+                include ../components/input-form.pug
+              ='\n'
+              .auth__form__btn
+                button.btn.btn--payment.btn--primary.btn--block(type='button' class=dataAuth.action.class) !{dataAuth.action.txt}
+          if dataAuth.cta !== undefined
+            .auth__cta
+              p.auth__cta__txt
+                | !{dataAuth.cta.txt}
+                a.auth__cta__link(href=dataAuth.cta.to) !{dataAuth.cta.txtLink}
+          if dataAuth.success !== undefined
+            //register-sucess
+            .auth__success
+              .auth__success__icon
+                i(class="mdi mdi-"+dataAuth.success.icon)
+              h3.auth__success__title !{dataAuth.success.title}
+              p.auth__success__desc !{dataAuth.success.desc}
+          .auth__copyright
+            p.auth__copyright__txt &copy; 2021-2022 Bilik Imaji Kreasi

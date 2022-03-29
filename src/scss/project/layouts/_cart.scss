@@ -1,0 +1,122 @@
+/* ==========================================================================
+Layout: product-cart
+========================================================================== */
+
+.product-cart {
+  padding: 48px 0;
+  .container {
+    @include clearfix;
+  }
+  &__head {
+    border-bottom: solid 2px color(grey, 2);
+    margin-bottom: 32px;
+  }
+  &__title {
+    margin-bottom: 12px;
+  }
+  &__content {
+    float: left;
+    width: 70%;
+    padding-right: 48px;
+  }
+  &__result {
+    float: right;
+    width: 30%;
+  }
+  &__item {
+    border-bottom: 1px solid color(grey, 2);
+    padding: 8px 0;
+    margin-bottom: 24px;
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+  &__wrapper {
+    @include clearfix;
+    margin-bottom: 12px;
+  }
+  &__store {
+    @include font-size(label);
+    margin-bottom: 16px;
+    &__name {
+      margin-bottom: 4px;
+    }
+    &__location {
+      color: color(grey, 1);
+      margin-bottom: 0;
+    }
+  }
+  &__image {
+    float: left;
+    width: 120px;
+    height: 120px;
+    margin-right: 24px;
+    border-radius: 4px;
+    overflow: hidden;
+    &__el {
+      display: block;
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+    }
+  }
+  &__txt {
+    float: left;
+  }
+  &__name {
+    @include font-size(h4);
+    font-weight: fw(regular);
+  }
+  &__desc {
+    font-size: 0;
+    margin-bottom: 8px;
+  }
+  &__discount {
+    margin-bottom: 4px;
+    &__percent {
+      @include font-size(label);
+      font-weight: fw(semi-bold);
+      display: inline-block;
+      vertical-align: middle;
+      color: color(primary, 1);
+      background-color: color(grey, 2);
+      padding: 2px 4px;
+      border-radius: 4px;
+      margin-right: 8px;
+
+    }
+    &__price {
+      @include font-size(label);
+      display: inline-block;
+      vertical-align: middle;
+      color: color(grey, 1);
+      margin-right: 16px;
+    }
+  }
+  &__price {
+    display: inline-block;
+    vertical-align: middle;
+    @include font-size(h6);
+    font-weight: fw(semi-bold);
+    margin-bottom: 0;
+  }
+  &__total {
+    color: color(grey, 1);
+  }
+  &__info {
+    @include font-size(label);
+  }
+  &__table {
+    width: 100%;
+    td,
+    th {
+      padding: 8px 0;
+    }
+    tbody {
+    border-bottom: 1px solid color(grey, 2);
+    }
+    &__price {
+      text-align: right;
+    }
+  }
+}

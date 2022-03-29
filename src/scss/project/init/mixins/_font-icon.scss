@@ -1,0 +1,33 @@
+/* ==========================================================================
+   Mixin Font Icon
+   ========================================================================== */
+
+   @mixin font-icon-prop {
+    display: inline-block;
+    vertical-align: middle;
+    font-family: 'Datawarehouse' !important;
+    speak: never;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: inherit;
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  // font-icon
+  @mixin font-icon($content: "\e900", $element: 'before') {
+    @if $element == 'after' {
+      &::after {
+        @include font-icon-prop;
+        content: "#{$content}";
+      }
+    } @else {
+      &::before {
+        @include font-icon-prop;
+        content: "#{$content}";
+      }
+    }
+  }

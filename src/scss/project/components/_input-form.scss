@@ -1,0 +1,182 @@
+/* ==========================================================================
+Components: Input form
+========================================================================== */
+
+.fi {
+  &-row {
+    position: relative;
+    margin-bottom: 24px;
+    font-size: 0;
+    &:last-child {
+      margin-bottom: 0;
+    }
+    i {
+      @include font-size(h6);
+      margin-right: 8px;
+    }
+  }
+
+  &-label {
+    display: block;
+    @include font-size(label);
+    font-weight: fw(regular);
+    color: color(grey, 1);
+    margin-bottom: 8px;
+    @include small {
+      @include font-size(h6);
+    }
+  }
+
+  &-dropdown,
+  &-name,
+  &-email,
+  &-password,
+  &-order,
+  &-multiline,
+  &-single-line {
+    display: block;
+    width: 100%;
+    border: 0;
+    outline: 0;
+    padding: 12px 16px;
+    border-radius: 4px;
+    @include font-size(h6);
+    border: 1px solid color(grey, 2);
+    background-color: color(white);
+    &:focus {
+      border-color: color(primary, 1);
+    }
+    @include small {
+      padding: 16px;
+    }
+  }
+
+  &-multiline {
+    resize: none;
+    height: 80px;
+    background-color: color(grey, 3);
+  }
+
+  &-dropdown {
+    $d: &;
+    position: relative;
+    z-index: zi(fi-dropdown);
+    padding-right: 48px;
+    cursor: pointer;
+    @include remove-tap-highlight;
+    &__input {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: zi(fi-dropdown-input);
+      visibility: hidden;
+      opacity: 0;
+    }
+    &__text {
+      margin-bottom: 0;
+      color: color(black, 1);
+      @include ellipsis;
+    }
+    + i {
+      display: inline-block;
+      color: color(black, 1);
+      @include font-size(h3);
+      top: 14px;
+      z-index: 5;
+      transition: all 0.35s ease;
+    }
+    &-menu {
+      list-style: none;
+      padding: 8px 0;
+      margin: 0;
+      position: absolute;
+      top: 64px;
+      left: 0;
+      right: 0;
+      z-index: zi(fi-dropdown-menu);
+      max-width: 100%;
+      max-height: 185px;
+      background-color: color(white);
+      border-radius: 4px;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(8px);
+      @include shadow(8);
+      @include scroll(Y, touch, hide);
+      transition: all 0.25s ease 0.1s;
+    }
+    &-item {
+      display: block;
+      color: color(black, 1);
+      padding: 12px 24px;
+      @include font-size(h6);
+      cursor: pointer;
+      @include ellipsis;
+      @include remove-tap-highlight;
+      transition: all 0.3s ease;
+      &:hover {
+        background-color: color(grey, 2);
+      }
+    }
+    &--show {
+      #{$d}-menu {
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+      }
+      i {
+        transform: rotateX(180deg);
+      }
+    }
+  }
+
+  &-alert {
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    bottom: -16px;
+    left: 0;
+    z-index: zi(fi-alert);
+    @include font-size(small);
+    font-weight: fw(regular);
+    color: red;
+    text-align: left;
+    margin-bottom: 0;
+    transform: translateX(-8px);
+    transition: all 0.35s ease;
+    .error & {
+      opacity: 1;
+      transform: none;
+      visibility: visible;
+    }
+  }
+
+  &-qty {
+    display: inline-block;
+    vertical-align: middle;
+    border-radius: 4px;
+    padding: 4px 6px;
+    border: solid 1px color(grey, 2);
+    margin-bottom: 24px;
+    &__dec,
+    &__inc {
+      display: inline-block;
+      vertical-align: middle;
+      padding: 6px;
+      cursor: pointer;
+      @include font-size(h6);
+      @include remove-tap-highlight;
+    }
+    &__input {
+      display: inline-block;
+      vertical-align: middle;
+      width: 56px;
+      padding: 0 4px;
+      outline: 0;
+      border: 0;
+      @include font-size(h5);
+      text-align: center;
+      @include remove-tap-highlight;
+    }
+  }
+}

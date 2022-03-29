@@ -1,0 +1,119 @@
+/* ==========================================================================
+Layout: Header
+========================================================================== */
+
+.header {
+  $h: &;
+  position: fixed;
+  width: 100%;
+  background-color: color(white);
+  padding: 16px 0;
+  transition: all 0.4s ease;
+  @include shadow(4);
+  z-index: zi(header);
+  &__content {
+    position: relative;
+    @include clearfix;
+  }
+  &__left {
+    float: left;
+  }
+  &__logo {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 60px;
+    transition: all 0.3s ease;
+    @include medium {
+      padding: 0;
+      margin-right: 0;
+    }
+    @include small {
+      padding: 4px 0;
+    }
+    &__el {
+      height: 40px;
+      display: block;
+      @include small {
+        height: 32px;
+      }
+    }
+  }
+  &__search {
+    display: inline-block;
+    vertical-align: middle;
+    .fi-single-line {
+      @include font-size(label);
+      padding: 8px 16px;
+      background-color: color(grey, 3);
+      border-color: color(grey, 3);
+      width: 400px;
+    }
+  }
+  &__right {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0;
+  }
+  &__btn,
+  &__user {
+    display: inline-block;
+    vertical-align: middle;
+  }
+  &__btn {
+    &__cart,
+    &__login{
+      display: inline-block;
+      vertical-align: middle;
+    }
+    &__cart {
+      outline: none;
+      border: none;
+      text-decoration: none;
+      padding: 0 4px;
+      background-color: transparent;
+      margin-right: 24px;
+      @include font-size(h3);
+      position: relative;
+    }
+    &__badge {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background-color: color(primary, 1);
+      color: color(white);
+      font-size: 8px;
+      line-height: 16px;
+      text-align: center;
+      font-weight: fw(bold);
+    }
+  }
+  &__user {
+    &__img,
+    &__name {
+      display: inline-block;
+      vertical-align: middle;
+    }
+    &__img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin-right: 8px;
+      &__el {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+    &__name {
+      @include font-size(label);
+      margin-bottom: 0;
+    }
+  }
+}

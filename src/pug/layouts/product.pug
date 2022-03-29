@@ -1,0 +1,14 @@
+//-------------------------------------------------------------------------------
+  @name: product
+  -------------------------------------------------------------------------------//
+
+// product
+.product
+  .container
+    .product__head
+      h2.product__title !{data.title}
+    .product__list.js-product-list
+      each val in data.card
+        -
+          data = val
+        include ../components/product-card.pug

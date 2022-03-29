@@ -1,0 +1,27 @@
+/* ==========================================================================
+Layout: Footer
+========================================================================== */
+
+.footer {
+  $f: &;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  left: 0;
+  background-color: color(white);
+  border-top: 1px solid #f1f1f1;
+  @include small {
+    position: relative;
+  }
+  &__copyright {
+    text-align: center;
+    padding: 24px 0;
+    @include medium {
+      padding: 16px 0;
+    }
+    &__txt {
+      @include font-size(small);
+      margin-bottom: 0;
+    }
+  }
+}

@@ -1,0 +1,95 @@
+/* ==========================================================================
+ Init: Fonts
+ ========================================================================== */
+
+@font-face {
+  font-family: "Helvetica";
+  src: url("../fonts/Helvetica-Bold.eot");
+  src: url("../fonts/Helvetica-Bold.eot?#iefix") format("embedded-opentype"),
+    url("../fonts/Helvetica-Bold.woff2") format("woff2"),
+    url("../fonts/Helvetica-Bold.woff") format("woff"),
+    url("../fonts/Helvetica-Bold.ttf") format("truetype"),
+    url("../fonts/Helvetica-Bold.svg#Helvetica-Bold") format("svg");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Helvetica";
+  src: url("../fonts/Helvetica-Bold.eot");
+  src: url("../fonts/Helvetica-Bold.eot?#iefix") format("embedded-opentype"),
+    url("../fonts/Helvetica-Bold.woff2") format("woff2"),
+    url("../fonts/Helvetica-Bold.woff") format("woff"),
+    url("../fonts/Helvetica-Bold.ttf") format("truetype"),
+    url("../fonts/Helvetica-Bold.svg#Helvetica-Bold") format("svg");
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Avenir";
+  src: url("../fonts/Avenir-Regular.eot");
+  src: url("../fonts/Avenir-Regular.eot?#iefix") format("embedded-opentype"),
+    url("../fonts/Avenir-Regular.woff2") format("woff2"),
+    url("../fonts/Avenir-Regular.woff") format("woff"),
+    url("../fonts/Avenir-Regular.ttf") format("truetype"),
+    url("../fonts/Avenir-Regular.svg#Avenir-Regular") format("svg");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Avenir";
+  src: url("../fonts/Avenir-RegularItalic.eot");
+  src: url("../fonts/Avenir-RegularItalic.eot?#iefix")
+      format("embedded-opentype"),
+    url("../fonts/Avenir-RegularItalic.woff2") format("woff2"),
+    url("../fonts/Avenir-RegularItalic.woff") format("woff"),
+    url("../fonts/Avenir-RegularItalic.ttf") format("truetype"),
+    url("../fonts/Avenir-RegularItalic.svg#Avenir-RegularItalic") format("svg");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Avenir";
+  src: url("../fonts/Avenir-Medium.eot");
+  src: url("../fonts/Avenir-Medium.eot?#iefix") format("embedded-opentype"),
+    url("../fonts/Avenir-Medium.woff2") format("woff2"),
+    url("../fonts/Avenir-Medium.woff") format("woff"),
+    url("../fonts/Avenir-Medium.ttf") format("truetype"),
+    url("../fonts/Avenir-Medium.svg#Avenir-Medium") format("svg");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Avenir";
+  src: url("../fonts/Avenir-MediumItalic.eot");
+  src: url("../fonts/Avenir-MediumItalic.eot?#iefix")
+      format("embedded-opentype"),
+    url("../fonts/Avenir-MediumItalic.woff2") format("woff2"),
+    url("../fonts/Avenir-MediumItalic.woff") format("woff"),
+    url("../fonts/Avenir-MediumItalic.ttf") format("truetype"),
+    url("../fonts/Avenir-MediumItalic.svg#Avenir-MediumItalic") format("svg");
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Datawarehouse';
+  src:  url('../fonts/icon/Datawarehouse.eot?k2sd6t');
+  src:  url('../fonts/icon/Datawarehouse.eot?k2sd6t#iefix') format('embedded-opentype'),
+    url('../fonts/icon/Datawarehouse.ttf?k2sd6t') format('truetype'),
+    url('../fonts/icon/Datawarehouse.woff?k2sd6t') format('woff'),
+    url('../fonts/icon/Datawarehouse.svg?k2sd6t#Datawarehouse') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}

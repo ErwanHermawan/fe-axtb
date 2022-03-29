@@ -1,0 +1,24 @@
+//-------------------------------------------------------------------------------
+  @name: product
+  -------------------------------------------------------------------------------//
+
+// product__card
+.product__card
+  .product__box
+    a.product__box__link(href=data.to)
+    .product__img
+      img.product__img__el(src="assets/img/dummy/"+data.img alt=data.title)/
+    .product__txt
+      h3.product__txt__title
+        | !{data.title}
+      .discount
+        span.discount__percent 10%
+        s.discount__price Rp20.0000
+      p.product__txt__price
+        | !{data.price}
+      .product__txt__bottom
+        p.product__txt__city
+          | !{data.city}
+        .product__txt__star
+          each val in [1, 2, 3, 4, 5]
+            i.mdi.mdi-star

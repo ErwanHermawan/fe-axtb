@@ -1,0 +1,41 @@
+/* ==========================================================================
+   Functions
+   ========================================================================== */
+
+// color
+@function color($color-name, $color-variant: false) {
+  @if $color-variant != false {
+    @return map-get(map-get($colors, $color-name), $color-variant);
+  } @else {
+    @return map-get($colors, $color-name);
+  }
+}
+
+// screen
+@function screen($size) {
+  @return map-get($screen, $size);
+}
+
+// zi
+@function zi($name) {
+  @return map-get($z-index, $name);
+}
+
+// font family
+@function ff($name) {
+  @return map-get($font, $name);
+}
+
+// font size
+@function fz($name) {
+  @return map-get(map-get($font, $name), font-size);
+}
+// line height
+@function lh($name) {
+  @return map-get(map-get($font, $name), line-height);
+}
+
+// font weight
+@function fw($weight) {
+  @return map-get(map-get($font, weight), $weight);
+}

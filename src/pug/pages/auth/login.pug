@@ -1,0 +1,57 @@
+-
+  dataAuth = {
+    head: {
+      title: 'Masuk',
+      desc: 'Masuk dengan email kamu untuk memulai simulasi Integrasi API',
+    },
+    bg: {
+      src: 'bg.svg',
+      alt: 'Login Bg'
+    },
+    logo: {
+      src: 'logo.svg',
+      alt: 'axtbFeed'
+    },
+    action: {
+      txt: 'Masuk',
+      class: 'js-auth-login'
+    },
+    cta: {
+      txt: 'Belum punya akun?',
+      txtLink: 'Daftar',
+      to: 'register.html'
+    },
+    alert: {
+      type: 'error',
+      icon: 'close',
+      text: 'Akun anda belum aktif, harap menunggu email pemberitahuan. Terima kasih'
+    }
+  }
+
+-
+  dataInput = [
+    {
+      label: 'Email',
+      type: 'text',
+      class: 'fi-single-line',
+      target: 'alertEmail',
+      id: 'email',
+      name: 'email',
+      placeholder: 'Masukan Email',
+      required: 'Email tidak boleh kosong!',
+      invalid: 'Email tidak valid'
+    },
+    {
+      label: 'Password',
+      type: 'password',
+      class: 'fi-single-line',
+      target: 'alertPassword',
+      id: 'password',
+      name: 'password',
+      placeholder: 'Masukan password',
+      required: 'Password tidak boleh kosong!',
+      invalid: 'Password tidak valid'
+    }
+  ];
+
+include ../../layouts/auth.pug

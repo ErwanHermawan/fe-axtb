@@ -1,0 +1,57 @@
+/* ==========================================================================
+Layout: product
+========================================================================== */
+
+.product {
+  $b: &;
+  padding: 88px 0;
+  overflow: hidden;
+  @include large {
+    padding: 96px 0;
+  }
+  @include medium {
+    padding: 72px 0;
+  }
+  @include small {
+    padding: 48px 0;
+  }
+  &__head {
+    margin-bottom: 16px;
+  }
+  &__title {
+    @include font-size(h4);
+    margin-bottom: 0;
+  }
+  &__body {
+    position: relative;
+  }
+  &__list {
+    margin: 0 -12px;
+    @include clearfix;
+  }
+  #{$b}__card {
+    float: left;
+    width: 20%;
+    padding: 12px;
+    @include medium {
+      float: none;
+      display: inline-block;
+      vertical-align: middle;
+      width: 100%;
+      max-width: 312px;
+      padding: 0;
+      margin-right: 24px;
+      white-space: normal;
+      &:last-child {
+        margin-right: 24px;
+      }
+    }
+    @include x-small {
+      max-width: 280px;
+      margin-right: 16px;
+      &:last-child {
+        margin-right: 24px;
+      }
+    }
+  }
+}

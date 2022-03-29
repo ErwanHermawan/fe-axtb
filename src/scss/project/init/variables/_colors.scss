@@ -1,0 +1,36 @@
+/* ==========================================================================
+   Variable: Colors
+   ========================================================================== */
+
+// colors
+$colors: (
+  primary: (
+    1: #ec1b65,
+    2: #fff2f4
+  ),
+  orange: (
+    1: #ec6e0a,
+    2: #ffc42e
+  ),
+  black: (
+    1: #222,
+    2: #333,
+  ),
+  grey: (
+    1: #888,
+    2: #ddd,
+    3: #f7f7f7
+  ),
+  white: #fff,
+  overlay: rgba(#000, 0.7),
+  opacity: rgba(#9c69e2, 0.2),
+  gradient: linear-gradient(114.44deg, #E31B5A 0%, #E6393F 100%),
+  social-media: (
+    facebook: #1877f2,
+    twitter: #1da1f2,
+    instagram: #405de6,
+    whatsapp: #25d366,
+    youtube: #ff0000,
+    spotify: #1db954,
+  ),
+);

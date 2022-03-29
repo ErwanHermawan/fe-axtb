@@ -1,0 +1,133 @@
+/* ==========================================================================
+Layout: Auth
+========================================================================== */
+.auth {
+  $a: &;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  padding: 120px 0 96px;
+  overflow-y: auto;
+  &__wrapper {
+    display: table;
+  }
+  &__img {
+    display: table-cell;
+    vertical-align: middle;
+    width: 60%;
+  }
+  &__form {
+    display: table-cell;
+    vertical-align: middle;
+    width: 40%;
+    &__box {
+      min-width: 480px;
+      min-height: 675px;
+      @include shadow(16);
+      border-radius: 16px;
+      height: 100%;
+      padding: 96px 40px 94px;
+      position: relative;
+    }
+    &__logo {
+      position: absolute;
+      top: 32px;
+      right: 40px;
+      &__el {
+        display: block;
+        height: 32px;
+      }
+    }
+    &__title {
+      margin-bottom: 24px;
+      &__info {
+        @include font-size(h5);
+        font-weight: fw(regular);
+        color: color(grey, 1);
+        margin-bottom: 8px;
+      }
+      &__desc {
+        margin-bottom: 0;
+      }
+    }
+    &__desc {
+      margin-bottom: 24px;
+      &__sign {
+        margin-bottom: 8px;
+      }
+      &__info {
+        @include font-size(label);
+        margin-bottom: 0;
+      }
+    }
+    &__btn {
+      margin-bottom: 32px;
+    }
+  }
+  &__cta {
+    text-align: center;
+    &__txt {
+      margin-bottom: 0;
+    }
+    &__link {
+      text-decoration: none;
+      color: color(primary, 1);
+      font-weight: fw(medium);
+      margin-left: 8px;
+    }
+  }
+  &__copyright {
+    position: absolute;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    &__txt {
+      @include font-size(small);
+      color: color(grey, 1);
+      margin-bottom: 0;
+    }
+  }
+  &__success {
+    padding-top: 90px;
+    text-align: center;
+    &__icon {
+      font-size: 72px;
+      line-height: 1;
+      color: color(orange, 1);
+      margin-bottom: 16px;
+    }
+    &__title {
+      color: color(primary, 1);
+      margin-bottom: 12px;
+    }
+    &__desc {
+      @include font-size(label);
+      margin-bottom: 0;
+    }
+  }
+  &--email-active {
+    #{$a} {
+      &__wrapper {
+        display: block;
+      }
+      &__form {
+        display: block;
+        text-align: center;
+        width: 480px;
+        margin: 0 auto;
+        &__box {
+          padding-top: 56px;
+        }
+        &__logo {
+          top: auto;
+          right: auto;
+          bottom: 68px;
+          left: 50%;
+          transform: translateX(-50%);
+        }
+      }
+    }
+  }
+}

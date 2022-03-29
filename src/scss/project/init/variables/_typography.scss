@@ -1,0 +1,60 @@
+/* ==========================================================================
+   Variable: Typography
+   ========================================================================== */
+
+$font-main: "Avenir", sans-serif;
+$font-title: "Helvetica", serif;
+$font-icon: "Data-Warehouse";
+
+// Font
+$font: (
+  family-main: $font-main,
+  family-title: $font-title,
+  icon: $font-icon,
+  h1: (
+    font-size: 4.8rem,
+    line-height: 6.2rem,
+  ),
+  h2: (
+    font-size: 4rem,
+    line-height: 4.8rem,
+  ),
+  h2-accent: (
+    font-size: 3.2rem,
+    line-height: 4rem,
+  ),
+  h3: (
+    font-size: 2.4rem,
+    line-height: 3.2rem,
+  ),
+  h4: (
+    font-size: 2rem,
+    line-height: 2.6rem,
+  ),
+  h5: (
+    font-size: 1.8rem,
+    line-height: 2.4rem,
+  ),
+  h6: (
+    font-size: 1.6rem,
+    line-height: 2rem,
+  ),
+  body: (
+    font-size: 1.6rem,
+    line-height: 2rem,
+  ),
+  label: (
+    font-size: 1.4rem,
+    line-height: 1.8rem,
+  ),
+  small: (
+    font-size: 1.2rem,
+    line-height: 1.6rem,
+  ),
+  weight: (
+    regular: 400,
+    medium: 500,
+    semi-bold: 600,
+    bold: 700,
+  ),
+);

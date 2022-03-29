@@ -1,0 +1,41 @@
+//-------------------------------------------------------------------------------
+  @name: Header
+  -------------------------------------------------------------------------------//
+
+-
+  dataHeader = {
+    logoSrc: 'logo-text.svg',
+    logoLink: 'index.html',
+    logoAlt: 'axtbFeed',
+    demo: {
+      to: '#',
+      text: 'Masuk'
+    }
+  }
+
+//header
+.header
+  .container
+    .header__content
+      .header__left
+        ='\n'
+        a.header__logo(href=dataHeader.logoLink)
+          ='\n'
+          img.header__logo__el(src="assets/img/logo/"+dataHeader.logoSrc alt=dataHeader.logoAlt)/
+        .header__search
+          input(type="text" class="fi-single-line"  placeholder="Cari produk" autocomplete='off')/
+      .header__right
+        ='\n'
+        a.header__btn__cart(href="#")
+          i.mdi.mdi-cart
+          span.header__btn__badge 16
+        .header__btn__login
+          a.btn.btn--primary.btn--header(href=dataHeader.demo.to) !{dataHeader.demo.text}
+            ='\n'
+            i.fi-arrow-right
+            ='\n'
+        //- .header__user
+        //-   .header__user__img
+        //-     img.header__user__img__el(src="assets/img/dummy/1.jpeg" alt=dataHeader.logoAlt)
+        //-   p.header__user__name John Doe
+

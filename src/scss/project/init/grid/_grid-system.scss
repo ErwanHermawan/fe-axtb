@@ -1,0 +1,33 @@
+/* ==========================================================================
+   Grid System
+   ========================================================================== */
+
+.container {
+  width: 100%;
+  max-width: $mw-container;
+  margin-left: auto;
+  margin-right: auto;
+  @include mq(1240px) {
+    max-width: initial;
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+  @include small {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}
+
+.main-site {
+  padding-top: 72px;
+  transition: all 0.35s ease;
+  @include small {
+    padding-top: 64px;
+  }
+  .header-on-scroll & {
+    padding-top: 68px;
+    @include small {
+      padding-top: 60px;
+    }
+  }
+}

@@ -1,0 +1,22 @@
+/* ==========================================================================
+Components: Discount
+========================================================================== */
+
+.discount {
+  @include font-size(small);
+  &__percent {
+    display: inline-block;
+    vertical-align: middle;
+    color: color(primary, 1);
+    background-color: color(grey, 2);
+    font-weight: fw(semi-bold);
+    padding: 2px 4px;
+    border-radius: 4px;
+    margin-right: 8px;
+  }
+  &__price {
+    display: inline-block;
+    vertical-align: middle;
+    color: color(grey, 1);
+  }
+}

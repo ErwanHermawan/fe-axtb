@@ -1,0 +1,54 @@
+//-------------------------------------------------------------------------------
+  @name: product-detail
+  -------------------------------------------------------------------------------//
+
+// product-detail
+.product-detail
+  .container
+    .product-detail__wrapper.js-product-detail
+      .product-detail__image
+        .product-detail__image__box
+          img.product-detail__image__el(src="assets/img/dummy/"+data.image, alt=data.title)/
+      .product-detail__content
+        h1.product-detail__title !{data.title}
+        .product-detail__review
+          i.mdi.mdi-star
+          span (667)
+        .discount
+          span.discount__percent 10%
+          s.discount__price Rp20.0000
+        h4.product-detail__price
+          | Rp30.0000
+        .product-detail__detail
+          h6.product-detail__detail__title Detail
+          .product-detail__detail__desc
+            p Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nulla, labore. Odio rem molestiae sit, sequi deserunt esse adipisci commodi ea eos, eligendi fuga, dolorum laudantium enim dolores ducimus. Temporibus, incidunt.
+        .product-detail__store
+          .product-detail__store__img
+            img.product-detail__store__img__el(src="assets/img/dummy/"+data.image, alt=data.title)/
+          .product-detail__store__txt
+            p.product-detail__store__name
+              | freemir Official Store
+            p.product-detail__store__location
+              | Bandung
+        .product-detail__checkout
+          h6.product-detail__checkout__title Pesan Produk
+          .product-detail__checkout__form
+            input(type="hidden" class="js-product-id" name="product_id")/
+            .fi-row
+              ='\n'
+              label(class='fi-label' for='qty') Jumlah
+            .fi-qty
+              span.fi-qty__dec.mdi.mdi-minus.qtybtn
+                input.fi-qty__input.js-qty(type="number" name="qty" min="1")/
+              span.fi-qty__inc.mdi.mdi-plus.qtybtn
+            .fi-row
+              label(class='fi-label' for='none') Catatan
+              textarea(class='fi-multiline js-note' id='none' name='note')
+            .fi-row
+              button.btn.btn--primary.btn--block.js-add-product
+                i.mdi.mdi-plus
+                | Keranjang
+
+
+

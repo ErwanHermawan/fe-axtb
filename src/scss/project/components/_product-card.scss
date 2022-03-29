@@ -1,0 +1,100 @@
+/* ==========================================================================
+   Components Article
+   ========================================================================== */
+
+.product {
+  $b: &;
+  &__card {
+    &:hover {
+      #{$b} {
+        &__box {
+          @include shadow(8);
+        }
+        &__img__el {
+          transform: scale(1.1);
+          transition: all 0.3s ease;
+        }
+        &__txt {
+          &__title {
+            color: color(primary, 1);
+            transition: all 0.3s ease;
+          }
+          &__btn i {
+            transition: all 0.3s ease;
+            transform: translateX(8px);
+          }
+        }
+      }
+    }
+  }
+  &__box {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    @include shadow(8);
+    transition: all 0.3s ease;
+    background-color: color(white);
+    &__link {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+      opacity: 0;
+      z-index: zi(cardLink);
+    }
+  }
+  &__img {
+    padding-bottom: 90%;
+    position: relative;
+    overflow: hidden;
+    &__el {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: all 0.3s ease;
+    }
+  }
+  &__txt {
+    padding: 16px 16px 68px;
+    min-height: 210px;
+    &__title {
+      @include font-size(h6);
+      @include multiline-ellipsis(3);
+      font-weight: fw(semi-bold);
+      margin-bottom: 8px;
+      transition: all 0.3s ease;
+    }
+    .discount {
+      margin-bottom: 12px;
+    }
+    &__price {
+      @include font-size(label);
+      font-weight: fw(semi-bold);
+      color: color(primary, 1);
+      margin-bottom: 0;
+    }
+    &__bottom {
+      position: absolute;
+      bottom: 16px;
+      left: 16px;
+    }
+    &__city {
+      @include font-size(label);
+      font-weight: fw(regular);
+      color: color(grey, 1);
+      margin-bottom: 4px;
+    }
+    &__star {
+      @include font-size(small);
+      font-weight: fw(regular);
+      margin-bottom: 0;
+      color: color(orange, 2);
+    }
+  }
+}
