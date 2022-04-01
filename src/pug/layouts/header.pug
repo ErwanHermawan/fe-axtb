@@ -7,10 +7,13 @@
     logoSrc: 'logo-text.svg',
     logoLink: 'index.html',
     logoAlt: 'axtbFeed',
-    demo: {
-      to: '#',
+    btnLogin: {
+      to: 'login.html',
       text: 'Masuk'
-    }
+    },
+    btnCart: {
+      to: 'cart.html',
+    },
   }
 
 //header
@@ -26,16 +29,16 @@
           input(type="text" class="fi-single-line"  placeholder="Cari produk" autocomplete='off')/
       .header__right
         ='\n'
-        a.header__btn__cart(href="#")
+        a.header__btn__cart(href=dataHeader.btnCart.to)
           i.mdi.mdi-cart
           span.header__btn__badge 16
         .header__btn__login
-          a.btn.btn--primary.btn--header(href=dataHeader.demo.to) !{dataHeader.demo.text}
+          a.btn.btn--primary.btn--header(href=dataHeader.btnLogin.to) !{dataHeader.btnLogin.text}
             ='\n'
             i.fi-arrow-right
             ='\n'
-        //- .header__user
-        //-   .header__user__img
-        //-     img.header__user__img__el(src="assets/img/dummy/1.jpeg" alt=dataHeader.logoAlt)
-        //-   p.header__user__name John Doe
+        .header__user
+          .header__user__img
+            img.header__user__img__el(src="assets/img/dummy/1.jpeg" alt=dataHeader.logoAlt)
+          p.header__user__name John Doe
 

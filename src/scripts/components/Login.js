@@ -48,6 +48,15 @@ const Login = (() => {
     });
   }
 
+  const handleCheckSession = () => {
+    const _userData = JSON.parse(localStorage.getItem('userData'));
+    if (_userData) {
+      if (_userData.logged) {
+        location.href = 'http://localhost:3000/index.html';
+      }
+    }
+  }
+
   const handleLogin = () => {
     $.ajax({
       url: `https://x-api.alpha-x.id/v1/login`,
@@ -60,10 +69,11 @@ const Login = (() => {
       success: function(response) {
         const _data = response;
         if (_data.code === 203) {
-          $('.alert').show();
+          $('.alert').show(200);
           $('.alert__text').text(_data.message);
         } else if (_data.code === 200) {
-          location.href = 'http://localhost:3000/product.html';
+          localStorage.setItem('userData', JSON.stringify(_data.data));
+          location.href = 'http://localhost:3000/index.html';
         }
       },
       error: function(respon) {
@@ -77,6 +87,7 @@ const Login = (() => {
     if ($('.js-auth-login').length > 0) {
       handleRunValidation();
       handleClickValidation();
+      handleCheckSession();
     }
 
   }

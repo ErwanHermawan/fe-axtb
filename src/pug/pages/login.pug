@@ -3,10 +3,11 @@ extends ../templates/default.pug
 //- Head
 block siteHeader
   -
-    siteTitle = 'Product';
+    siteTitle = 'Login System';
+    auth = true
 
 //- Body
 block siteContent
 
   //- Login
-  include product/product.pug
+  include auth/login.pug
