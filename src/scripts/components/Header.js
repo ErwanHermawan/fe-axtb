@@ -2,56 +2,78 @@
 @name: Header
 @description: Header
 --------------------------------------------------------------------------------- */
+
 // --- utilities
 import {
-  Scrolllable
+  Session
 } from 'utilities';
 
 const Header = (() => {
+  const _userData = JSON.parse(Session.get('userData'));
 
-  // --- handleMobileNav
-  const handleMobileNav = () => {
-
-    // nav open
-    $('.js-nav').on('click', () => {
-      if ($('body').hasClass('show-nav')) {
-        Scrolllable.enable();
-        $('body').removeClass('show-nav');
-      } else {
-        Scrolllable.disable();
-        $('body').addClass('show-nav');
-      }
-    });
+  // handleCheckSession
+  const handleCheckSession = () => {
+    Session.timeout(() => {
+      Session.remove('userData');
+      location.reload();
+    }, 10);
   }
 
-  // --- handleScrollMobileMenu
-  const handleScrollMobileMenu = () => {
-    $('.js-mobile-menu').on('scroll', (e) => {
-      if ($(e.currentTarget).scrollTop() > 4) {
-        $('body').addClass('on-scroll-mobile-menu');
-      } else {
-        $('body').removeClass('on-scroll-mobile-menu');
-      }
-    });
-  }
+  // handleLoginHeader
+  const handleLoginHeader = () => {
+    if (_userData.logged) {
+      const _userProfile = `<div class="header__right">
+                              <a class="header__cart" href="cart.html">
+                                <i class="mdi mdi-cart"></i>
+                                <span class="header__cart__total">16</span>
+                              </a>
+                              <div class="header__profile">
+                                <div class="header__user">
+                                  <div class="header__user__avatar">
+                                    <img class="header__user__avatar__el" src="${_userData.profilePicture}" alt="${_userData.fullName}" />
+                                  </div>
+                                  <h6 class="header__user__name">${_userData.fullName}</h6>
+                                </div>
+                                <ul class="header__dropdown">
+                                  <li class="header__dropdown__item">
+                                    <a class="header__dropdown__link" href="#">
+                                      <i class="mdi mdi-account-outline"></i>
+                                      <span>Profile</span></a>
+                                  </li>
+                                  <li class="header__dropdown__item">
+                                    <a class="header__dropdown__link js-logout" href="login.html">
+                                      <i class="mdi mdi-logout"></i>
+                                      <span>Logout</span></a>
+                                  </li>
+                                </ul>
+                              </div>
+                            </div>`;
 
-  // --- handleCheckClass
-  const handleCheckClass = () => {
-    if ($(window).width() >= 992) {
-      Scrolllable.enable();
-      $('body').removeClass('show-nav');
+      $('.header__right').html(_userProfile);
     }
+  }
+
+  const handleLogout = () => {
+    $('body').on('click', '.js-logout', function (e) {
+      Session.remove('userData');
+      location.href = 'http://localhost:3000/login.html';
+      e.preventDefault();
+    });
   }
 
   // - init
   const init = () => {
-    handleMobileNav();
-    handleScrollMobileMenu();
+    if (_userData) {
+      handleLoginHeader();
+      handleCheckSession ();
+    }
+    if ($('body .js-logout').length) {
+      handleLogout();
+    }
   }
 
   return {
-    init,
-    checkClass: handleCheckClass
+    init
   }
 
 })();

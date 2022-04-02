@@ -36,7 +36,6 @@ const ProductDetail = (() => {
       },
       success: function(data) {
         if (data.code == 200) {
-          console.log(data.data);
           const _data = data.data;
           let _productDetail = '';
 

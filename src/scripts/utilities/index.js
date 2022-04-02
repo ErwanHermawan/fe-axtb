@@ -7,9 +7,9 @@ import isOS from './isOS';
 import BrowserCheck from './BrowserCheck';
 import Scrolllable from './Scrolllable';
 import Validation from './Validation';
-import Validation from './Validation';
+import Session from './Session';
 
-export { 
+export {
   isOS,
   BrowserCheck,
   Scrolllable,

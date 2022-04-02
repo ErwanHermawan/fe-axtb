@@ -26,19 +26,40 @@
           ='\n'
           img.header__logo__el(src="assets/img/logo/"+dataHeader.logoSrc alt=dataHeader.logoAlt)/
         .header__search
+          ='\n'
           input(type="text" class="fi-single-line"  placeholder="Cari produk" autocomplete='off')/
       .header__right
         ='\n'
-        a.header__btn__cart(href=dataHeader.btnCart.to)
+        a.header__cart(href=dataHeader.btnCart.to)
+          ='\n'
           i.mdi.mdi-cart
-          span.header__btn__badge 16
-        .header__btn__login
-          a.btn.btn--primary.btn--header(href=dataHeader.btnLogin.to) !{dataHeader.btnLogin.text}
-            ='\n'
-            i.fi-arrow-right
-            ='\n'
-        .header__user
-          .header__user__img
-            img.header__user__img__el(src="assets/img/dummy/1.jpeg" alt=dataHeader.logoAlt)
-          p.header__user__name John Doe
+          ='\n'
+          if looged
+            span.header__cart__total 16
+          ='\n'
+        if !looged
+          a.btn.btn--primary.btn--header(href='login.html') Masuk
+          ='\n'
+        else
+          .header__profile
+            .header__user
+              .header__user__avatar
+                =`\n`
+                img.header__user__avatar__el(src='assets/img/dummy/user.png', alt='Alexa Joessee')/
+              h6.header__user__name Alexa Joessee
+            ul.header__dropdown
+              li.header__dropdown__item
+                =`\n`
+                a.header__dropdown__link(href='#')
+                  =`\n`
+                  i.mdi.mdi-account-outline
+                  =`\n`
+                  span Profile
+              li.header__dropdown__item
+                =`\n`
+                a.header__dropdown__link.js-logout(href='login.html')
+                  =`\n`
+                  i.mdi.mdi-logout
+                  =`\n`
+                  span Logout
 

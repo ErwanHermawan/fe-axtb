@@ -47,11 +47,10 @@ const Product = (() => {
               `;
             }
 
-            // $.each(v.review, () => {
-            // });
-
-            for (let i = 0; i < v.review; i++){
-              _review = '<i class="mdi mdi-star"></i>';
+            // set rate
+            let _star = `<i class="mdi mdi-star"></i>`;
+            for (let i=1; i < Math.round(v.review); i++) {
+              _star += `<i class="mdi mdi-star"></i>`;
             }
 
             _list_product += `<div class="product__card">
@@ -66,7 +65,7 @@ const Product = (() => {
                                     <div class="product__txt__bottom">
                                       <p class="product__txt__city">${v.location}</p>
                                       <div class="product__txt__star">
-                                        ${_review}
+                                        ${_star}
                                       </div>
                                     </div>
                                   </div>
@@ -85,49 +84,9 @@ const Product = (() => {
     });
   }
 
-  `<div class="header__right">
-    <a class="header__btn__cart" href="cart.html"><i class="mdi mdi-cart"></i><span class="header__btn__badge">16</span></a>
-    <div class="header__btn__login"><a class="btn btn--primary btn--header" href="login.html">Masuk
-        <i class="fi-arrow-right"></i>
-      </a></div>
-    <div class="header__user">
-      <div class="header__user__img"><img class="header__user__img__el" src="assets/img/dummy/1.jpeg" alt="axtbFeed"></div>
-      <p class="header__user__name">John Doe</p>
-    </div>
-  </div>`
-
-  // handleHeader
-  const handleHeader = () => {
-    const _userData = JSON.parse(localStorage.getItem('userData'));
-    console.log(_userData);
-
-    if (_userData) {
-      if (_userData.logged) {
-        $('.header__right .header__btn__login').remove();
-
-        const _userProfile = `<div class="header__profile">
-                                <a class="header__btn__cart" href="cart.html">
-                                  <i class="mdi mdi-cart"></i>
-                                </a>
-                                <div class="header__user">
-                                  <div class="header__user__img">
-                                    <img class="header__user__img__el" src="${_userData.profilePicture}" alt="${_userData.fullName}">
-                                  </div>
-                                  <p class="header__user__name">${_userData.fullName}</p>
-                                </div>
-                              </div>`;
-
-        $('.header__right').html(_userProfile);
-      } else {
-        $('.header__right .header__user').remove();
-      }
-    }
-  }
-
   // --- init
   const init = () => {
     handleCallApi();
-    handleHeader();
   }
 
   // --- return
