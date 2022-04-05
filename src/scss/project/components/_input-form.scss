@@ -150,33 +150,47 @@ Components: Input form
       visibility: visible;
     }
   }
-
-  &-qty {
+}
+.qty {
+  margin-bottom: 24px;
+  &__dec,
+  &__inc {
+    display: inline-block!important;
+    vertical-align: middle;
+    padding: 2px 4px;
+    cursor: pointer;
+    @include font-size(h5);
+    color: color(grey, 1);
+    border: 1px solid color(grey, 2);
+    border-radius: 4px;
+    @include remove-tap-highlight;
+    transition: all .3s ease;
+    @include small {
+      @include font-size(h6);
+    }
+    @include retina {
+      @include font-size(label);
+    }
+    &:hover {
+      color: color(black, 1);
+    }
+  }
+  &__number {
     display: inline-block;
     vertical-align: middle;
-    border-radius: 4px;
-    padding: 4px 6px;
-    border: solid 1px color(grey, 2);
-    margin-bottom: 24px;
-    &__dec,
-    &__inc {
-      display: inline-block;
-      vertical-align: middle;
-      padding: 6px;
-      cursor: pointer;
-      @include font-size(h6);
-      @include remove-tap-highlight;
-    }
-    &__input {
-      display: inline-block;
-      vertical-align: middle;
-      width: 56px;
-      padding: 0 4px;
-      outline: 0;
-      border: 0;
-      @include font-size(h5);
-      text-align: center;
-      @include remove-tap-highlight;
+    width: 32px;
+    padding: 4px 8px;
+    margin: 0 4px;
+    @include font-size(label);
+    line-height: 1;
+    outline: 0;
+    text-align: center;
+    border: 1px solid color(grey, 1);
+    border: none;
+    @include small {
+      padding: 4px;
+      margin: 0 2px;
+      @include font-size(small);
     }
   }
 }

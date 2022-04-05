@@ -38,6 +38,7 @@ const Product = (() => {
             _discount = (v.discount !== 0 ? v.price - (v.discount/100*v.price) : v.price),
             _review = '';
 
+            // set discount
             if (v.discount !== 0) {
               _elDiscount = `
                 <div class="discount">

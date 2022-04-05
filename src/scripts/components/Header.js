@@ -16,7 +16,7 @@ const Header = (() => {
     Session.timeout(() => {
       Session.remove('userData');
       location.reload();
-    }, 10);
+    }, 1200);
   }
 
   // handleLoginHeader

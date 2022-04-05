@@ -4,7 +4,8 @@
 --------------------------------------------------------------------------------- */
 // --- utilities
 import {
-  Validation
+  Validation,
+  Session
 } from 'utilities';
 
 // Form Validation
@@ -49,7 +50,8 @@ const Login = (() => {
   }
 
   const handleCheckSession = () => {
-    const _userData = JSON.parse(localStorage.getItem('userData'));
+    const _userData = JSON.parse(Session.get('userData'));
+
     if (_userData) {
       if (_userData.logged) {
         location.href = 'http://localhost:3000/index.html';
@@ -72,7 +74,7 @@ const Login = (() => {
           $('.alert').show(200);
           $('.alert__text').text(_data.message);
         } else if (_data.code === 200) {
-          localStorage.setItem('userData', JSON.stringify(_data.data));
+          Session.set('userData', JSON.stringify(_data.data));
           location.href = 'http://localhost:3000/index.html';
         }
       },

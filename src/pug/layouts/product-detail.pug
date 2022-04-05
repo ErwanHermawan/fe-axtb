@@ -38,10 +38,10 @@
             .fi-row
               ='\n'
               label(class='fi-label' for='qty') Jumlah
-            .fi-qty
-              span.fi-qty__dec.mdi.mdi-minus.qtybtn
-                input.fi-qty__input.js-qty(type="number" name="qty" min="1")/
-              span.fi-qty__inc.mdi.mdi-plus.qtybtn
+            .qty.js-qty
+              span.qty__dec.mdi.mdi-minus.qtybtn
+              input.qty__number(type="number" name="jumlah" min="1" value="1")
+              span.qty__inc.mdi.mdi-plus.qtybtn
             .fi-row
               label(class='fi-label' for='none') Catatan
               textarea(class='fi-multiline js-note' id='none' name='note')

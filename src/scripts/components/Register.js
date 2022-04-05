@@ -59,10 +59,12 @@ const Login = (() => {
       },
       success: function(response) {
         const _data = response;
-        if (_data.code === 200) {
+        if (_data.code === 203) {
+          $('.alert').show(200);
+          $('.alert__text').text(_data.message);
+        } else if (_data.code === 200) {
+          location.href = 'http://localhost:3000/index.html';
           location.href = 'http://localhost:3000/register-success.html';
-        } else {
-          alert('Data gagal diproses');
         }
       },
       error: function(respon) {

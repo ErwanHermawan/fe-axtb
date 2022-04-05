@@ -5,7 +5,7 @@
 
 // --- ProductDetail
 const ProductDetail = (() => {
-  const handleFormatNumber = (number, prefix = '') => {
+  const handleFormatNumber = (number, prefix = 'Rp') => {
     var _number_string = number.toString().replace(/[^,\d]/g, ''),
     _split = _number_string.split(','),
     _mod = _split[0].length % 3,
@@ -25,7 +25,7 @@ const ProductDetail = (() => {
     return _result;
   }
 
-  const handleCallApiDetail = () => {
+  const handleProductDetail = () => {
     const _alias = location.hash.split('#')[1];
     $.ajax({
       url: `https://x-api.alpha-x.id/v1/product-detail`,
@@ -37,7 +37,25 @@ const ProductDetail = (() => {
       success: function(data) {
         if (data.code == 200) {
           const _data = data.data;
-          let _productDetail = '';
+          let _productDetail = '',
+          _elDiscount = '',
+          _discount = (_data.discount !== 0 ? _data.price - (_data.discount/100*_data.price) : _data.price);
+
+          // set discount
+          if (_data.discount !== 0) {
+            _elDiscount = `
+              <div class="discount">
+                <span class="discount__percent">${_data.discount} %</span>
+                <s class="discount__price">${handleFormatNumber(_data.price)}</s>
+              </div>
+            `;
+          }
+
+          // set rate
+          let _star = `<i class="mdi mdi-star"></i>`;
+          for (let i=1; i < Math.round(_data.review); i++) {
+            _star += `<i class="mdi mdi-star"></i>`;
+          }
 
           _productDetail = `<div class="product-detail__image">
                               <div class="product-detail__image__box"><img class="product-detail__image__el" src="${_data.image}" alt="${_data.name}" />
@@ -46,12 +64,11 @@ const ProductDetail = (() => {
                             <div class="product-detail__content">
                               <h1 class="product-detail__title">${_data.name}</h1>
                               <div class="product-detail__review">
-                                <i class="mdi mdi-star"></i><span>(${_data.review_total})</span></div>
-                              <div class="discount">
-                                <span class="discount__percent">10%</span>
-                                <s class="discount__price">Rp20.0000</s>
+                                ${_star}
+                                <span>(${_data.review_total})</span>
                               </div>
-                              <h4 class="product-detail__price">${handleFormatNumber(_data.price, 'Rp')}</h4>
+                              ${_elDiscount}
+                              <h4 class="product-detail__price">${handleFormatNumber(_discount)}</h4>
                               <div class="product-detail__detail">
                                 <h6 class="product-detail__detail__title">Detail</h6>
                                 <div class="product-detail__detail__desc">
@@ -71,9 +88,10 @@ const ProductDetail = (() => {
                                   <div class="fi-row">
                                     <label class="fi-label" for="qty">Jumlah</label>
                                   </div>
-                                  <div class="fi-qty">
-                                    <span class="fi-qty__dec mdi mdi-minus qtybtn">
-                                    <input class="fi-qty__input js-qty" type="number" name="qty" min="1" /></span><span class="fi-qty__inc mdi mdi-plus qtybtn"></span>
+                                  <div class="qty js-qty">
+                                    <span class="qty__dec mdi mdi-minus qtybtn"></span>
+                                    <input class="qty__number" type="number" name="jumlah" min="1" value="1">
+                                    <span class="qty__inc mdi mdi-plus qtybtn"></span>
                                   </div>
                                   <div class="fi-row">
                                     <label class="fi-label" for="none">Catatan</label>
@@ -97,7 +115,26 @@ const ProductDetail = (() => {
     });
   }
 
-  const sendData = () => {
+  const handleChangeQty = () => {
+    $('body').on('click', '.js-qty .qtybtn', function() {
+      var _parent = $(this).parents('.js-qty'),
+      _val = _parent.find('.qty__number').val(),
+      _qty = '';
+
+      if ($(this).hasClass('qty__inc')) {
+        _qty = parseFloat(_val) + 1;
+      } else if ($(this).hasClass('qty__dec')) {
+        if (_val > 1) {
+          _qty = parseFloat(_val) - 1;
+        } else {
+          _qty = 1;
+        }
+      }
+      _parent.find('.qty__number').val(_qty);
+    });
+  }
+
+  const handleAddToCart = () => {
     $('.js-add-product').on('click', function () {
       let _productId = $('.js-product-id').val(),
       _qty = $('.js-qty').val(),
@@ -125,8 +162,9 @@ const ProductDetail = (() => {
 
   // --- init
   const init = () => {
-    handleCallApiDetail();
-    sendData();
+    handleProductDetail();
+    handleChangeQty();
+    handleAddToCart();
   }
 
   // --- return
