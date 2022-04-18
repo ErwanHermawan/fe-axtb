@@ -36,16 +36,15 @@ const Login = (() => {
 
   // Handle Click Validation
   const handleClickValidation = () => {
-    $('.js-auth-login').on('click', (e) => {
+    $('.js-auth-login button[type="submit"]').on('click', (e) => {
       $.each(ElementSelector, (i, v) => {
         $('#'+v.id).blur();
       });
 
       if ($('.error').length === 0) {
         handleLogin();
-      } else {
-        e.preventDefault();
       }
+      e.preventDefault();
     });
   }
 
@@ -69,17 +68,19 @@ const Login = (() => {
         'password': $('#password').val(),
       },
       beforeSend: () => {
-
+        $('.js-auth-login button[type="submit"]').html('<span class="lds-ring"><span></span><span></span><span></span><span></span></span>');
       },
       success: (response) => {
         const _data = response;
-        if (_data.code === 203) {
-          $('.alert').show(200);
-          $('.alert__text').text(_data.message);
-        } else if (_data.code === 200) {
-          Session.set('userData', JSON.stringify(_data.data));
-          location.href = 'http://localhost:3000/index.html';
-        }
+        setTimeout(() => {
+          if (_data.code === 203) {
+            $('.alert').show(200);
+            $('.alert__text').text(_data.message);
+          } else if (_data.code === 200) {
+            Session.set('userData', JSON.stringify(_data.data));
+            location.href = 'http://localhost:3000/index.html';
+          }
+        }, 200);
       },
       error: (respon) => {
         alert('Data gagal diproses');

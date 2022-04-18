@@ -36,7 +36,7 @@ const Header = (() => {
                                 </div>
                                 <ul class="header__dropdown">
                                   <li class="header__dropdown__item">
-                                    <a class="header__dropdown__link js-cart" href="cart.html">
+                                    <a class="header__dropdown__link" href="profile.html">
                                       <i class="mdi mdi-account-outline"></i>
                                       <span>Profile</span>
                                     </a>

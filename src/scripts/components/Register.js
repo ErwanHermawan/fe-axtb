@@ -35,16 +35,15 @@ const Login = (() => {
 
   // Handle Click Validation
   const handleClickValidation = () => {
-    $('.js-auth-register').on('click', (e) => {
+    $('.js-auth-register button[type="submit"]').on('click', (e) => {
       $.each(ElementSelector, (i, v) => {
         $('#'+v.id).blur();
       });
 
       if ($('.error').length === 0) {
         handleRegistrtion();
-      } else {
-        e.preventDefault();
       }
+      e.preventDefault();
     });
   }
 
@@ -58,7 +57,7 @@ const Login = (() => {
         'password': $('#password').val(),
       },
       beforeSend: () => {
-
+        $('.js-auth-register').html('<span class="lds-ring"><span></span><span></span><span></span><span></span></span>');
       },
       success: (response) => {
         const _data = response;

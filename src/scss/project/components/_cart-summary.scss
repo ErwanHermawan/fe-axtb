@@ -1,0 +1,40 @@
+/* ==========================================================================
+   Components Cart Sumaary
+   ========================================================================== */
+
+.cart {
+  &__summary {
+    $cs: &;
+    float: right;
+    width: 350px;
+    padding: 24px;
+    @include shadow(16);
+    border-radius: 8px;
+    &__list {
+      list-style: none;
+      padding: 0;
+      margin-bottom: 16px;
+      border-bottom: 1px solid color(grey, 2);
+    }
+    &__item {
+      margin-bottom: 16px;
+      @include clearfix;
+    }
+    &__txt {
+      @include clearfix;
+      font-weight: fw(bold);
+      margin-bottom: 16px;
+      &__left,
+      &__right {
+        @include font-size(h6);
+        margin-bottom: 0;
+      }
+      &__left {
+        float: left;
+      }
+      &__right {
+        float: right;
+      }
+    }
+  }
+}

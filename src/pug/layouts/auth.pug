@@ -8,6 +8,7 @@
     .auth__wrapper
       if dataAuth.bg !== undefined
         .auth__img
+          ='\n'
           img.auth__img__el(src="assets/img/dummy/"+dataAuth.bg.src, alt=dataAuth.bg.alt)/
       .auth__form
         .auth__form__box
@@ -28,22 +29,24 @@
                 p.alert__text !{dataAuth.alert.text}
           //form
           if dataInput !== undefined
-            form
+            form(class=dataAuth.action.class)
               each val in dataInput
                 - data = val;
                 include ../components/input-form.pug
               ='\n'
               .auth__form__btn
-                button.btn.btn--payment.btn--primary.btn--block(type='button' class=dataAuth.action.class) !{dataAuth.action.txt}
+                button.btn.btn--primary.btn--block(type='submit') !{dataAuth.action.txt}
           if dataAuth.cta !== undefined
             .auth__cta
               p.auth__cta__txt
                 | !{dataAuth.cta.txt}
+                ='\n'
                 a.auth__cta__link(href=dataAuth.cta.to) !{dataAuth.cta.txtLink}
           if dataAuth.success !== undefined
             //register-sucess
             .auth__success
               .auth__success__icon
+                ='\n'
                 i(class="mdi mdi-"+dataAuth.success.icon)
               h3.auth__success__title !{dataAuth.success.title}
               p.auth__success__desc !{dataAuth.success.desc}
