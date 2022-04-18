@@ -38,17 +38,20 @@
             .fi-row
               ='\n'
               label(class='fi-label' for='qty') Jumlah
-            .qty.js-qty
-              span.qty__dec.mdi.mdi-minus.qtybtn
-              input.qty__number(type="number" name="jumlah" min="1" value="1")
-              span.qty__inc.mdi.mdi-plus.qtybtn
+            .fi-row
+              .qty.js-qty
+                span.qty__dec.mdi.mdi-minus.qtybtn
+                input.qty__number(type="number" name="jumlah" min="1" value="1")
+                span.qty__inc.mdi.mdi-plus.qtybtn
             .fi-row
               label(class='fi-label' for='none') Catatan
               textarea(class='fi-multiline js-note' id='none' name='note')
             .fi-row
-              button.btn.btn--primary.btn--block.js-add-product
+              button.btn.btn--primary.btn--block.js-show-modal(type='button' data-target="cart-modal")
                 i.mdi.mdi-plus
                 | Keranjang
+
+include ../components/modal.pug
 
 
 

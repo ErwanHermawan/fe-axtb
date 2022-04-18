@@ -1,0 +1,19 @@
+/* ==========================================================================
+  Elements Button text
+  ========================================================================== */
+
+.btn-text {
+  display: inline-block;
+  vertical-align: middle;
+  padding: 0;
+  text-decoration: none;
+  border: 0;
+  outline: 0;
+  cursor: pointer;
+  overflow: hidden;
+  @include font-size(label);
+  color: color(primary, 1);
+  background-color: transparent;
+  @include remove-tap-highlight;
+  font-weight: fw(bold);
+}

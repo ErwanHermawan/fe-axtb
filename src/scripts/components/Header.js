@@ -36,9 +36,10 @@ const Header = (() => {
                                 </div>
                                 <ul class="header__dropdown">
                                   <li class="header__dropdown__item">
-                                    <a class="header__dropdown__link" href="#">
+                                    <a class="header__dropdown__link js-cart" href="cart.html">
                                       <i class="mdi mdi-account-outline"></i>
-                                      <span>Profile</span></a>
+                                      <span>Profile</span>
+                                    </a>
                                   </li>
                                   <li class="header__dropdown__item">
                                     <a class="header__dropdown__link js-logout" href="login.html">
@@ -61,14 +62,29 @@ const Header = (() => {
     });
   }
 
+  const handlClickCart = () => {
+    $('body').on('click', '.js-cart', function (e) {
+      const _userData = JSON.parse(Session.get('userData'));
+
+      if (_userData) {
+        location.href = 'http://localhost:3000/cart.html';
+      } else {
+        location.href = 'http://localhost:3000/login.html';
+      }
+
+      e.preventDefault();
+    });
+  }
+
   // - init
   const init = () => {
     if (_userData) {
       handleLoginHeader();
       handleCheckSession ();
-    }
-    if ($('body .js-logout').length) {
       handleLogout();
+    }
+    if ($('body .js-cart').length) {
+      handlClickCart();
     }
   }
 

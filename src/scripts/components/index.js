@@ -13,6 +13,7 @@ import ProductDetail from "./ProductDetail";
 import Cart from "./Cart";
 import Login from "./Login";
 import Register from "./Register";
+import Modal from "./Modal";
 
 export {
   WinScroll,
@@ -24,5 +25,6 @@ export {
   ProductDetail,
   Cart,
   Login,
-  Register
+  Register,
+  Modal
 };

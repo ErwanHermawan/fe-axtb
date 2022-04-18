@@ -88,10 +88,12 @@ const ProductDetail = (() => {
                                   <div class="fi-row">
                                     <label class="fi-label" for="qty">Jumlah</label>
                                   </div>
-                                  <div class="qty js-qty">
-                                    <span class="qty__dec mdi mdi-minus qtybtn"></span>
-                                    <input class="qty__number" type="number" name="jumlah" min="1" value="1">
-                                    <span class="qty__inc mdi mdi-plus qtybtn"></span>
+                                  <div class="fi-row">
+                                    <div class="qty js-qty">
+                                      <span class="qty__dec mdi mdi-minus qtybtn"></span>
+                                      <input class="qty__number" type="number" name="jumlah" min="1" value="1">
+                                      <span class="qty__inc mdi mdi-plus qtybtn"></span>
+                                    </div>
                                   </div>
                                   <div class="fi-row">
                                     <label class="fi-label" for="none">Catatan</label>

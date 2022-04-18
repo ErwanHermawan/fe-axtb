@@ -30,7 +30,7 @@
           input(type="text" class="fi-single-line"  placeholder="Cari produk" autocomplete='off')/
       .header__right
         ='\n'
-        a.header__cart(href=dataHeader.btnCart.to)
+        a.header__cart.js-cart(href='cart.html')
           ='\n'
           i.mdi.mdi-cart
           ='\n'
@@ -50,7 +50,7 @@
             ul.header__dropdown
               li.header__dropdown__item
                 =`\n`
-                a.header__dropdown__link(href='#')
+                a.header__dropdown__link(href='profile.html')
                   =`\n`
                   i.mdi.mdi-account-outline
                   =`\n`

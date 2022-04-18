@@ -1,0 +1,22 @@
+/* ==========================================================================
+  Elements Button icon
+  ========================================================================== */
+
+.btn-icon {
+  display: inline-block;
+  vertical-align: middle;
+  padding: 0;
+  text-decoration: none;
+  border: 0;
+  outline: 0;
+  cursor: pointer;
+  overflow: hidden;
+  @include font-size(h6);
+  color: color(grey, 1);
+  background-color: transparent;
+  @include remove-tap-highlight;
+  transition: all .3s ease;
+  &:hover {
+    color: color(black, 1);
+  }
+}

@@ -13,8 +13,8 @@ const Session = (() => {
   }
 
   // --- handleGet
-  const handleGet = (key, value) => {
-    return localStorage.getItem(key, value);
+  const handleGet = (key) => {
+    return localStorage.getItem(key);
   }
 
   // --- handleRemove
@@ -23,7 +23,7 @@ const Session = (() => {
   }
 
   // --- handleClear
-  const handleClear = (key) => {
+  const handleClear = () => {
     return localStorage.clear();
   }
 

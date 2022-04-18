@@ -1,45 +1,68 @@
 //-------------------------------------------------------------------------------
-  @name: product-cart
+  @name: cart
   -------------------------------------------------------------------------------//
 
-// product-cart
-.product-cart
+//cart
+.cart
   .container
-    .product-cart__content
-      .product-cart__head
-        h4.product-cart__title Keranjang Belanja
-      .product-cart__list.js-result-item
-        .product-cart__item
-          .product-cart__wrapper
-            .product-cart__store
-              h6.product-cart__store__name Lorem ipsum dolor sit amet.
-              p.product-cart__store__location Bandung
-            .product-cart__image
-              img.product-cart__image__el(src="assets/img/dummy/1.jpeg", alt="")/
-            .product-cart__txt
-              h6.product-cart__name Lorem ipsum dolor sit amet.
-              .product-cart__desc
-                span.product-cart__discount__percent 20%
-                del.product-cart__discount__price Rp100.0000
-                p.product-cart__price Rp80.0000
-          .product-cart__info
-            p.product-cart__info__txt
-              | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt voluptatibus vero qui dignissimos quidem quasi repellat ipsa numquam ut ipsum.
-    .product-cart__result
-      h4.product-cart__result__title Ringkasan Belanja
-      table.product-cart__table
-        tbody
-          tr
-            td Total harga (5 Barang)
-            td(class="product-cart__table__price") Rp375.000
-          tr
-            td Total Diskon Barang
-            td(class="product-cart__table__price") Rp25.000
-        tfoot
-          tr
-            th Total Harga
-            th(class="product-cart__table__price") Rp2400.000
-      button.btn.btn--primary Beli
-
-
-
+    .cart__wrapper
+      .cart__cntnt
+        h1.cart__ttl
+          | Keranjang
+        .cart__list
+          .cart__item
+            .cart__item__head
+              p.cart__item__store
+                | Indah Jaya Kaos
+              p.cart__item__addr
+                | Bandung
+            .cart__item__body
+              .cart__item__img
+                ='\n'
+                img.cart__item__img__el(src='assets/img/dummy/1.jpeg' alt='product-d')/
+              .cart__item__txt
+                h4.cart__item__ttl
+                  | Kaos Jumbo Pria Big Size XXXXL
+                p.cart__item__discount
+                  span 15%
+                  | Rp75.000
+                p.cart__item__price
+                  | Rp63.750
+            .cart__item__foot
+              .cart__item__detail
+                p.cart__item__desc
+                  | 2 yaa sesuai gambar dan deskripsi jangan lupa kasih bubble ya gan
+                button.btn-text(type='button')
+                  | Ubah
+              .cart__item__control
+                button.btn-icon(type='button')
+                  i.mdi.mdi-trash-can-outline
+                .qty.js-qty
+                  span.qty__dec.mdi.mdi-minus.qtybtn
+                  ='\n'
+                  input.qty__number(type="number" name="jumlah" min="1" value="1")
+                  ='\n'
+                  span.qty__inc.mdi.mdi-plus.qtybtn
+                ='\n'
+      .cart__summary
+        h4.cart__summary__ttl
+          | Ringkasan belanja
+        ul.cart__summary__list
+          li.cart__summary__item
+            p.cart__summary__txt__left
+              | Total Harga (5 barang)
+            p.cart__summary__txt__right
+              | Rp375.000
+          li.cart__summary__item
+            p.cart__summary__txt__left
+              | Total Diskon Barang
+            p.cart__summary__txt__right
+              | Rp45.000
+        .cart__summary__result
+          .cart__summary__txt
+            p.cart__summary__txt__left
+              | Total Harga
+            p.cart__summary__txt__right
+              | Rp330.000
+          button.btn.btn--primary.btn--block(type='button')
+            | Beli (5)

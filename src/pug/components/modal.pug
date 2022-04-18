@@ -1,0 +1,29 @@
+//-------------------------------------------------------------------------------
+  @name: modal
+  -------------------------------------------------------------------------------//
+
+  // modal
+.modal(data-modal='cart-modal')
+  .modal__wrapper
+    .modal__box
+      .container
+        .modal__cntnt
+          .modal__head
+            h3.modal__ttl
+              | Berhasil Ditambahkan
+            ='\n'
+            button.modal__btn(type='button' class='js-hide-modal')
+              ='\n'
+              i.mdi.mdi-close
+            ='\n'
+          .modal__body
+            .modal__card
+              .modal__card__img
+                ='\n'
+                img.modal__card__img__el(src='assets/img/dummy/1.jpeg' alt='product-d')/
+              .modal__card__txt
+                h4.modal__card__ttl
+                  | Kaos Polos Cotton Combed 24s Lengan Pendek Premium - Putih
+              .modal__card__btn
+                button.btn.btn--primary.js-add-cart(type='button')
+                  | Lihat Keranjang

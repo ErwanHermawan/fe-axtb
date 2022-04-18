@@ -15,7 +15,8 @@ import {
   ProductDetail,
   Cart,
   Login,
-  Register
+  Register,
+  Modal
 } from 'components';
 
 // --- App
@@ -54,6 +55,7 @@ const App = (() => {
       Cart.init();
       Login.init();
       Register.init();
+      Modal.init();
     })(jQuery);
   }
 
