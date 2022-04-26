@@ -22,10 +22,12 @@ const Header = (() => {
   // handleLoginHeader
   const handleLoginHeader = () => {
     if (_userData.logged) {
+      let _total = '<span class="header__cart__total">16</span>';
+
       const _userProfile = `<div class="header__right">
                               <a class="header__cart" href="cart.html">
                                 <i class="mdi mdi-cart"></i>
-                                <span class="header__cart__total">16</span>
+                                ${_total}
                               </a>
                               <div class="header__profile">
                                 <div class="header__user">
