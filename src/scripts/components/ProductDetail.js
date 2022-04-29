@@ -22,12 +22,9 @@ const ProductDetail = (() => {
     const _alias = location.hash.split('#')[1];
 
     $.ajax({
-      url: `https://x-api.alpha-x.id/v1/product-detail`,
-      type: 'POST',
+      url: `https://x-api.alpha-x.id/v1/product/${_alias}`,
+      type: 'GET',
       dataType: 'JSON',
-      data: {
-        'alias': _alias
-      },
       success: function(data) {
         if (data.code == 200) {
           const _data = data.data;
@@ -110,27 +107,8 @@ const ProductDetail = (() => {
         }
       },
       error: function() {
-      }
-    });
-  }
 
-  // --- handleChangeQty
-  const handleChangeQty = () => {
-    $('body').on('click', '.js-qty .qtybtn', function() {
-      var _parent = $(this).parents('.js-qty'),
-      _val = _parent.find('.qty__number').val(),
-      _qty = '';
-
-      if ($(this).hasClass('qty__inc')) {
-        _qty = parseFloat(_val) + 1;
-      } else if ($(this).hasClass('qty__dec')) {
-        if (_val > 1) {
-          _qty = parseFloat(_val) - 1;
-        } else {
-          _qty = 1;
-        }
       }
-      _parent.find('.qty__number').val(_qty);
     });
   }
 
@@ -158,6 +136,8 @@ const ProductDetail = (() => {
             success: function(data) {
               if (data.code == 200) {
                 handleShowModal();
+              } else if(data.code === 400) {
+                alert('Failed to add');
               }
             }
           });
@@ -193,9 +173,10 @@ const ProductDetail = (() => {
 
   // --- init
   const init = () => {
-    handleProductDetail();
-    handleChangeQty();
-    handleAddToCart();
+    if($('.js-product-detail').length || $('.js-add-product').length) {
+      handleProductDetail();
+      handleAddToCart();
+    }
   }
 
   // --- return

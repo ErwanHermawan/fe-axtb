@@ -116,6 +116,8 @@
       padding: 12px 16px;
       @include font-size(label);
       background-color: color(white);
+      resize: none;
+      overflow: hidden
     }
     &__count {
       text-align: right;

@@ -73,7 +73,7 @@ const Cart = (() => {
           });
 
 
-          $('.js-result-item').html(_list_item);
+          $('.js-result-cart').html(_list_item);
         }
       }
     });
@@ -83,17 +83,18 @@ const Cart = (() => {
   const handleNote = () => {
     $('body').on('click', '.js-show-note', (e) => {
       let _this = $(e.currentTarget),
-      _note = _this.parents('.cart__item__detail').find('.cart__item__desc').text(),
-      _inputEl = `<div class="cart__item__note">
+      _parent = _this.parents('.cart__item__detail'),
+      _note = _parent.find('.cart__item__desc').text(),
+      _inputNote = `<div class="cart__item__note">
                     <label class="cart__item__label"> Tulis Catatan untuk Barang ini</label>
-                    <input class="cart__item__input js-change-note" type="text" name="note" autofocus="autofocus" value="${_note}">
-                    <p class="cart__item__count">0/160</p>
+                    <textarea class="cart__item__input js-change-note" type="text" name="note" maxlength="160" autofocus="autofocus">${_note}</textarea>
+                    <p class="cart__item__count js-count-note">0/160</p>
                   </div>`;
-      if (!_this.parents('.cart__item__detail').hasClass('show-note')) {
-        _this.parents('.cart__item__detail').addClass('show-note');
-        _this.parents('.cart__item__detail').html(_inputEl);
-      }
 
+      if (!_parent.hasClass('show-note')) {
+        _parent.addClass('show-note');
+        _parent.html(_inputNote);
+      }
     });
 
     $('body').on('blur', '.js-change-note', (e) => {
@@ -107,13 +108,30 @@ const Cart = (() => {
         _this.parents('.cart__item__detail').html(_inputEl);
       }
     });
-  }
 
+    $('body').on('input', '.js-change-note', (e) => {
+      let _this = $(e.currentTarget),
+      _note = _this.val(),
+      _letterCount = _note.length;
+
+      $('.js-count-note').text(_letterCount + '/160');
+
+      // let's check if the height of textarea is higher than the scrollheight
+      if( _this.outerHeight() > _this.prop('scrollHeight')) {
+        // adjust the height to the smallest
+        _this.outerHeight(5);
+      }
+      // set the height of textarea to scrollheight
+      _this.outerHeight(_this.prop('scrollHeight'));
+    });
+  }
 
   // --- init
   const init = () => {
-    handlegetData();
-    handleNote()
+    if($('.js-result-cart').length) {
+      handlegetData();
+      handleNote()
+    }
   }
 
   // --- return

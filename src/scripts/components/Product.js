@@ -3,29 +3,16 @@
 @description: Product
 --------------------------------------------------------------------------------- */
 
+// --- utilities
+import {
+  Currency
+} from 'utilities';
+
 // --- Product
 const Product = (() => {
-  const handleFormatNumber = (number, prefix = 'Rp') => {
-    var _number_string = number.toString().replace(/[^,\d]/g, ''),
-    _split = _number_string.split(','),
-    _mod = _split[0].length % 3,
-    _idr = _split[0].substr(0, _mod),
-    _thousands = _split[0].substr(_mod).match(/\d{3}/gi),
-    _separator = '',
-    _result;
 
-    // if thousands
-    if (_thousands) {
-      _separator = _mod ? '.' : '';
-      _idr += _separator + _thousands.join('.');
-    }
-
-    _idr = (_split[1] != undefined ? _idr + ',' + _split[1] : _idr);
-    _result = (prefix != undefined ? prefix + _idr : _idr);
-    return _result;
-  }
-
-  const handleCallApi = () => {
+  // ---handleGetData
+  const handleGetData = () => {
     $.ajax({
       url: 'https://x-api.alpha-x.id/v1/product',
       type: 'GET',
@@ -43,7 +30,7 @@ const Product = (() => {
               _elDiscount = `
                 <div class="discount">
                   <span class="discount__percent">${v.discount} %</span>
-                  <s class="discount__price">${handleFormatNumber(v.price)}</s>
+                  <s class="discount__price">${Currency.idr_format(v.price)}</s>
                 </div>
               `;
             }
@@ -62,7 +49,7 @@ const Product = (() => {
                                   <div class="product__txt">
                                     <h3 class="product__txt__title">${v.name}</h3>
                                     ${_elDiscount}
-                                    <p class="product__txt__price">${handleFormatNumber(_discount)}</p>
+                                    <p class="product__txt__price">${Currency.idr_format(_discount)}</p>
                                     <div class="product__txt__bottom">
                                       <p class="product__txt__city">${v.location}</p>
                                       <div class="product__txt__star">
@@ -87,7 +74,9 @@ const Product = (() => {
 
   // --- init
   const init = () => {
-    handleCallApi();
+    if ($('.js-product-list').length) {
+      handleGetData();
+    }
   }
 
   // --- return

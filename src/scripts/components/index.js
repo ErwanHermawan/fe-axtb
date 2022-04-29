@@ -14,6 +14,7 @@ import Cart from "./Cart";
 import Login from "./Login";
 import Register from "./Register";
 import Modal from "./Modal";
+import Qty from "./Qty";
 
 export {
   WinScroll,
@@ -26,5 +27,6 @@ export {
   Cart,
   Login,
   Register,
-  Modal
+  Modal,
+  Qty
 };

@@ -9,7 +9,7 @@
       .cart__cntnt
         h1.cart__ttl
           | Keranjang
-        .cart__list.js-result-item
+        .cart__list.js-result-cart
           .cart__item
             .cart__item__head
               p.cart__item__store
@@ -43,43 +43,43 @@
                   input.qty__number(type="number" name="jumlah" min="1" value="1")
                   ='\n'
                   span.qty__inc.mdi.mdi-plus.qtybtn
-          //- .cart__item
-          //-   .cart__item__head
-          //-     p.cart__item__store
-          //-       | Indah Jaya Kaos
-          //-     p.cart__item__addr
-          //-       | Bandung
-          //-   .cart__item__body
-          //-     .cart__item__img
-          //-       ='\n'
-          //-       img.cart__item__img__el(src='assets/img/dummy/2.jpeg' alt='product-d')/
-          //-     .cart__item__txt
-          //-       h4.cart__item__ttl
-          //-         | Kaos Jumbo Pria Big Size XXXXL
-          //-       p.cart__item__discount
-          //-         ='\n'
-          //-         span 15%
-          //-         ='\n'
-          //-         | Rp75.000
-          //-       p.cart__item__price
-          //-         | Rp63.750
-          //-   .cart__item__foot
-          //-     .cart__item__detail
-          //-       ='\n'
-          //-       button.btn-text(type='button')
-          //-         | Tulis Catatan
-          //-     .cart__item__control
-          //-       ='\n'
-          //-       button.btn-icon(type='button')
-          //-         ='\n'
-          //-         i.mdi.mdi-trash-can-outline
-          //-       ='\n'
-          //-       .qty.js-qty
-          //-         span.qty__dec.mdi.mdi-minus.qtybtn
-          //-         ='\n'
-          //-         input.qty__number(type="number" name="jumlah" min="1" value="1")
-          //-         ='\n'
-          //-         span.qty__inc.mdi.mdi-plus.qtybtn
+          .cart__item
+            .cart__item__head
+              p.cart__item__store
+                | Indah Jaya Kaos
+              p.cart__item__addr
+                | Bandung
+            .cart__item__body
+              .cart__item__img
+                ='\n'
+                img.cart__item__img__el(src='assets/img/dummy/2.jpeg' alt='product-d')/
+              .cart__item__txt
+                h4.cart__item__ttl
+                  | Kaos Jumbo Pria Big Size XXXXL
+                p.cart__item__discount
+                  ='\n'
+                  span 15%
+                  ='\n'
+                  | Rp75.000
+                p.cart__item__price
+                  | Rp63.750
+            .cart__item__foot
+              .cart__item__detail
+                ='\n'
+                button.btn-text(type='button' class='js-show-note')
+                  | Tulis Catatan
+              .cart__item__control
+                ='\n'
+                button.btn-icon(type='button')
+                  ='\n'
+                  i.mdi.mdi-trash-can-outline
+                ='\n'
+                .qty.js-qty
+                  span.qty__dec.mdi.mdi-minus.qtybtn
+                  ='\n'
+                  input.qty__number(type="number" name="jumlah" min="1" value="1")
+                  ='\n'
+                  span.qty__inc.mdi.mdi-plus.qtybtn
           //- .cart__item
           //-   .cart__item__head
           //-     p.cart__item__store
