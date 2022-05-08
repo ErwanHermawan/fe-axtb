@@ -19,15 +19,31 @@ const Header = (() => {
     }, 1200);
   }
 
+
   // handleLoginHeader
   const handleLoginHeader = () => {
     if (_userData) {
       if (_userData.logged) {
-        let _total = '<span class="header__cart__total">16</span>';
+        // $.ajax({
+        //   url: 'https://x-api.alpha-x.id/v1/order-cart',
+        //   type: 'POST',
+        //   dataType: 'JSON',
+        //   data: {
+        //     'email': _email,
+        //   },
+        //   success: function(data) {
+        //     let _data = data.data,
+        //     _total = _data.total ;
+
+        //     return _total;
+        //   }
+        // });
+
+        let _total = `<span class="header__cart__total"></span>`;
 
         const _userProfile = `<div class="header__right">
                                 <a class="header__cart" href="cart.html">
-                                  <i class="mdi mdi-cart"></i>
+                                  <i class="mdi mdi-cart-outline"></i>
                                   ${_total}
                                 </a>
                                 <div class="header__profile">

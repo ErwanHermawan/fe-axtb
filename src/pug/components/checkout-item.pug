@@ -1,0 +1,69 @@
+//-------------------------------------------------------------------------------
+  @name: checkout item
+  -------------------------------------------------------------------------------//
+
+.checkout__item
+  .checkout__item__head
+    h4.checkout__item__ttl
+      | Pesanan 1
+  .checkout__item__store
+    h4.checkout__item__ttl
+      | Indah Jaya Kaos
+    p.checkout__item__desc
+      | Bandung
+  .checkout__item__detail
+    .checkout__item__row
+      .checkout__item__img
+        img.checkout__item__img__el(src='assets/img/dummy/1.jpeg' alt='1')/
+      .checkout__item__txt
+        h3.checkout__item__name
+          | Kaos Jumbo Pria Big Size XXXXL
+        p.checkout__item__desc
+          | 2 barang
+        p.checkout__item__discount
+          | Rp75.000
+        p.checkout__item__price
+          | Rp75.000
+        p.checkout__item__note
+          | Catatan: 2 yaa sesuai gambar dan deskripsi jangan lupa kasih buble wrap
+    .checkout__item__row
+      .checkout__item__img
+        img.checkout__item__img__el(src='assets/img/dummy/1.jpeg' alt='1')/
+      .checkout__item__txt
+        h3.checkout__item__name
+          | Kaos Jumbo Pria Big Size XXXXL
+        p.checkout__item__desc
+          | 2 barang
+        p.checkout__item__discount
+          | Rp75.000
+        p.checkout__item__price
+          | Rp75.000
+        p.checkout__item__note
+          | Catatan: 2 yaa sesuai gambar dan deskripsi jangan lupa kasih buble wrap
+    .checkout__item__bottom
+      .checkout__item__left
+        h4.checkout__item__ttl
+          | Ekspedisi Pengiriman
+      .checkout__item__right
+        select.fi__control(name="addr")
+          option Pilih Ekspedisi Pengiriman
+          option(value="sicepat") Si Cepat Express
+          option(value="jne") JNE
+          option(value="jnt") JNT
+  .checkout__item__payment
+    .btn-icon
+      i.mdi.mdi-chevron-down
+    .checkout__item__left
+      h6.checkout__item__ttl
+        | Sub Total
+      p.checkout__item__note
+        | Harga (3 Barang)
+      p.checkout__item__note
+        | Ongkos Kirim
+    .checkout__item__right
+      h6.checkout__item__ttl
+        | Rp233.750
+      p.checkout__item__note
+        | Rp233.750
+      p.checkout__item__note
+        | Rp233.750

@@ -1,0 +1,12 @@
+extends ../templates/default.pug
+
+//- Head
+block siteHeader
+  -
+    navActive = "checkout";
+    siteTitle = 'Checkout';
+
+//- Body
+block siteContent
+  //- checkout
+  include checkout/checkout.pug

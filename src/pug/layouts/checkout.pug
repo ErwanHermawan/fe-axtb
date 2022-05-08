@@ -1,0 +1,26 @@
+//-------------------------------------------------------------------------------
+  @name: checkout
+  -------------------------------------------------------------------------------//
+
+//checkout
+.section.checkout
+  .container
+    .section__wrapper
+      .cart__left
+        .checkout__head
+          h1.checkout__ttl
+            | Checkout
+          h3.checkout__ttl--l
+            | Alamat Pengiriman
+          .checkout__addr
+            h4.checkout__addr__ttl
+              | John Doe
+              span (Rumah)
+            p.checkout__addr__desc 089188098809
+            p.checkout__addr__desc Perumahan Griya Mandala, Jl. Kehormatan Blok A No.19 RT.002 RW.08 Duri Kepa, Kebon Jeruk, Jakarta Barat, Indonesia, 11510
+
+        .checkout__list.js-result-checkout
+          //- each val, idx in [0,1,2,3]
+          include ../components/checkout-item.pug
+      .cart__right
+        include ../components/cart-summary.pug

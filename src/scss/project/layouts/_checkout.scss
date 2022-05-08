@@ -1,0 +1,34 @@
+/* ==========================================================================
+   Layouts Checkout
+   ========================================================================== */
+
+.checkout {
+  &__ttl {
+    @include font-size(h4);
+    margin-bottom: 24px;
+    &--l {
+      @include font-size(label);
+    }
+  }
+  &__head {
+    margin-bottom: 32px;
+    padding-bottom: 12px;
+    border-bottom: 3px solid color(grey, 2);
+  }
+  &__addr {
+    max-width: 500px;
+    &__ttl {
+      @include font-size(label);
+      font-weight: fw(bold);
+      margin-bottom: 0;
+      span {
+        font-weight: fw(regular);
+      }
+    }
+    &__desc {
+      @include font-size(label);
+      font-weight: fw(regular);
+      margin-bottom: 8px;
+    }
+  }
+}

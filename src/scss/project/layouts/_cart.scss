@@ -10,6 +10,17 @@
       margin-bottom: 0;
       border-bottom: 2px solid color(grey, 2);
     }
+    &__head {
+      padding-bottom: 12px;
+      border-bottom: 2px solid color(grey, 2);
+      @include clearfix;
+      &__left {
+        float: left;
+      }
+      &__right {
+        float: right;
+      }
+    }
     &__wrapper {
       position: relative;
       @include clearfix;
@@ -18,5 +29,14 @@
       float: left;
       width: calc((100% - 350px) - 48px);
       margin-right: 48px;
+    }
+    &__left {
+      float: left;
+      width: calc((100% - 350px) - 48px);
+      margin-right: 48px;
+    }
+    &__right {
+      float: right;
+      width: 350px;
     }
   }

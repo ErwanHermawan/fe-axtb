@@ -130,6 +130,23 @@ Components: Input form
     }
   }
 
+  &__control {
+    display: block;
+    width: 100%;
+    padding: 10px 14px;
+    border-radius: 8px;
+    outline: 0;
+    border: 1px solid color(grey, 2);
+    background-color: color(white);
+    @include font-size(label);
+    &:focus {
+      border-color: color(primary, 1);
+    }
+    .error & {
+      border-color: color(primary, 1);
+    }
+  }
+
   &-alert {
     opacity: 0;
     visibility: hidden;
