@@ -24,27 +24,28 @@ const Header = (() => {
   const handleLoginHeader = () => {
     if (_userData) {
       if (_userData.logged) {
-        // $.ajax({
-        //   url: 'https://x-api.alpha-x.id/v1/order-cart',
-        //   type: 'POST',
-        //   dataType: 'JSON',
-        //   data: {
-        //     'email': _email,
-        //   },
-        //   success: function(data) {
-        //     let _data = data.data,
-        //     _total = _data.total ;
+        const _email = _userData.email;
 
-        //     return _total;
-        //   }
-        // });
+        $.ajax({
+          url: 'https://x-api.alpha-x.id/v1/order-cart',
+          type: 'POST',
+          dataType: 'JSON',
+          data: {
+            'email': _email,
+          },
+          success: function(data) {
+            let _data = data.data;
 
-        let _total = `<span class="header__cart__total"></span>`;
+            if (_data.total !== 0) {
+              const _userCart = `<span class="header__cart__total">${_data.total}</span>`
+            }
+          }
+        });
 
         const _userProfile = `<div class="header__right">
                                 <a class="header__cart" href="cart.html">
                                   <i class="mdi mdi-cart-outline"></i>
-                                  ${_total}
+                                  ${_userCart}
                                 </a>
                                 <div class="header__profile">
                                   <div class="header__user">
