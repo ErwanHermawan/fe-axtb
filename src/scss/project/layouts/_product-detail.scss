@@ -37,7 +37,7 @@ Layout: product
     @include font-size(label);
     margin-bottom: 12px;
     i {
-      color : color(orange, 1);
+      color : color(orange, 1 );
     }
     span {
       margin-left: 8px;

@@ -3,11 +3,16 @@
 @description: AddToCart
 --------------------------------------------------------------------------------- */
 
+// --- variables
+import {
+  API_URL,
+  WEB_URL
+} from 'variables';
+
 // --- utilities
 import {
   Session,
-  Scrolllable,
-  BrowserCheck
+  Scrolllable
 } from 'utilities';
 
 // --- AddToCart
@@ -20,7 +25,7 @@ const AddToCart = (() => {
   const handleAddToCart = () => {
     $(document).on('click', '.js-add-product', function () {
       if (!_userData) {
-        location.href = 'http://localhost:3000/login.html';
+        location.href = WEB_URL.login;
       } else {
         let _productId = $('.js-product-id').val(),
         _email = _userData.email,
@@ -28,7 +33,7 @@ const AddToCart = (() => {
         _note = $('.js-note').val();
 
         $.ajax({
-          url: `https://x-api.alpha-x.id/v1/order-product`,
+          url:  API_URL.orderAdd,
           type: 'POST',
           dataType: 'JSON',
           data: {

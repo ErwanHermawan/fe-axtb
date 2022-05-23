@@ -3,12 +3,16 @@
 @description: ProductDetail
 --------------------------------------------------------------------------------- */
 
+// --- variables
+import {
+  API_URL
+} from 'variables';
+
+
 // --- utilities
 import {
   Session,
-  Currency,
-  Scrolllable,
-  BrowserCheck
+  Currency
 } from 'utilities';
 
 // --- ProductDetail
@@ -22,7 +26,7 @@ const ProductDetail = (() => {
     const _alias = location.hash.split('#')[1];
 
     $.ajax({
-      url: `https://x-api.alpha-x.id/v1/product/${_alias}`,
+      url: API_URL.productDetail(_alias),
       type: 'GET',
       dataType: 'JSON',
       success: function(data) {

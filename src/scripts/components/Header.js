@@ -3,6 +3,12 @@
 @description: Header
 --------------------------------------------------------------------------------- */
 
+// --- variables
+import {
+  API_URL,
+  WEB_URL
+} from 'variables';
+
 // --- utilities
 import {
   Session
@@ -15,7 +21,7 @@ const Header = (() => {
   const handleCheckSession = () => {
     Session.timeout(() => {
       Session.remove('userData');
-      location.href = 'http://localhost:3000/index.html';
+      location.href = WEB_URL.home;
     }, 1200);
   }
 
@@ -27,7 +33,7 @@ const Header = (() => {
         const _email = _userData.email;
 
         $.ajax({
-          url: 'https://x-api.alpha-x.id/v1/order-cart',
+          url: API_URL.orderCart,
           type: 'POST',
           dataType: 'JSON',
           data: {
@@ -78,28 +84,14 @@ const Header = (() => {
   const handleLogout = () => {
     $('body').on('click', '.js-logout', function (e) {
       Session.remove('userData');
-      location.href = 'http://localhost:3000/login.html';
-      e.preventDefault();
-    });
-  }
-
-  const handlClickCart = () => {
-    $('body').on('click', '.js-cart', function (e) {
-      const _userData = JSON.parse(Session.get('userData'));
-
-      if (_userData) {
-        location.href = 'http://localhost:3000/cart.html';
-      } else {
-        location.href = 'http://localhost:3000/login.html';
-      }
-
+      location.href = location.href = WEB_URL.home;
       e.preventDefault();
     });
   }
 
   // - init
   const init = () => {
-    if ((_userData) ||$('.js-cart').length ) {
+    if ((_userData)) {
       handleLoginHeader();
       handleCheckSession ();
       handleLogout();

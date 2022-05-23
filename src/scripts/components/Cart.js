@@ -3,6 +3,11 @@
 @description: Cart
 --------------------------------------------------------------------------------- */
 
+// --- variables
+import {
+  API_URL
+} from 'variables';
+
 // --- utilities
 import {
   Session,
@@ -20,7 +25,7 @@ const Cart = (() => {
       let _email = _userData.email;
 
       $.ajax({
-        url: 'https://x-api.alpha-x.id/v1/order-cart',
+        url: API_URL.orderCart,
         type: 'POST',
         dataType: 'JSON',
         data: {
@@ -72,7 +77,6 @@ const Cart = (() => {
                               </div>
                             </div>`;
             });
-
 
             $('.js-result-cart').html(_list_item);
           }

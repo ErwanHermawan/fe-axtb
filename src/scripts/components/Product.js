@@ -3,6 +3,11 @@
 @description: Product
 --------------------------------------------------------------------------------- */
 
+// --- variables
+import {
+  API_URL
+} from 'variables';
+
 // --- utilities
 import {
   Currency
@@ -14,7 +19,7 @@ const Product = (() => {
   // ---handleGetData
   const handleGetData = () => {
     $.ajax({
-      url: 'https://x-api.alpha-x.id/v1/product',
+      url: API_URL.product,
       type: 'GET',
       dataType: 'JSON',
       success: function(data) {
