@@ -1,0 +1,66 @@
+//-------------------------------------------------------------------------------
+  @name: cart item
+  -------------------------------------------------------------------------------//
+
+.cart__item(data-id=idx)
+  .cart__store
+    .checkbox
+      label.checkbox__lbl(for='check-store')
+        input(type='checkbox' id='check-store')/ 
+        span.checkbox__area
+    .cart__store__txt
+      p.cart__store__name
+        | Indah Jaya Kaos
+      p.cart__store__addr
+        | Bandung 
+  .cart__item__prod
+    .cart__item__row
+      .cart__item__top 
+        .checkbox
+          label.checkbox__lbl(for='check-item')
+            input(type='checkbox' id='check-item')/ 
+            span.checkbox__area
+        .cart__item__img
+          ='\n'
+          img.cart__item__img__el(src='assets/img/dummy/product-1.jpg' alt='product-d')/
+        .cart__item__txt
+          h4.cart__item__ttl 
+            | Kaos Jumbo Pria Big Size XXXXL
+          p.cart__item__discount 
+            ='\n'
+            span 15%
+            ='\n'
+            | Rp75.000
+          p.cart__item__price
+            | Rp63.750
+      .cart__item__bot 
+        .cart__item__detail
+          ='\n'
+          button.btn-text(type='button' class='js-show-note')
+            | Tulis Catatan
+          //- ---- desc
+          //- p.cart__item__desc
+          //-   | 2 yaa sesuai gambar dan deskripsi jangan lupa kasih bubble ya gan
+          //- button.btn-text(type='button' class='js-show-note')
+          //-   | Ubah
+          //- ---- input
+          //- .cart__item__note 
+          //-   ='\n'
+          //-   label.cart__item__label 
+          //-     | Tulis Catatan untuk Barang ini
+          //-   ='\n'
+          //-   input(type='text' class='cart__item__input js-change-note' name='note')
+          //-   p.cart__item__count 0/160
+        .cart__item__control 
+          ='\n'
+          button.btn-icon(type='button')
+            ='\n'
+            i.mdi.mdi-trash-can-outline
+          ='\n'
+          .qty.js-qty
+            ='\n'
+            span.qty__btn.qty__btn--dec.mdi.mdi-minus
+            ='\n'
+            input(class='qty__inp js-total' type='number' min='1' name='qty' id='qty' value='1' autocomplete='off')/
+            ='\n'
+            span.qty__btn.qty__btn--inc.mdi.mdi-plus

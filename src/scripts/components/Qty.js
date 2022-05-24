@@ -1,33 +1,35 @@
 /* ------------------------------------------------------------------------------
-@name: Qty
-@description: Qty
+@name: Quantity
+@description: Quantity
 --------------------------------------------------------------------------------- */
 
-// --- Qty
-const Qty = (() => {
-  // --- handleChangeQty
-  const handleChangeQty = () => {
-    $('body').on('click', '.js-qty .qtybtn', function() {
-      var _parent = $(this).parents('.js-qty'),
-      _val = _parent.find('.qty__number').val(),
-      _qty = '';
+// --- Quantity
+const Quantity = (() => {
 
-      if ($(this).hasClass('qty__inc')) {
+  // -- handleClickQty
+  const handleClickQty = () => {
+    $('body').on('click', '.js-qty .qty__btn', (e) => {
+      const _this = $(e.currentTarget),
+            _val = _this.parents('.qty').find('input').val();
+      let _qty;
+
+      if (_this.hasClass('qty__btn--inc')) {
         _qty = parseFloat(_val) + 1;
-      } else if ($(this).hasClass('qty__dec')) {
+      } else {
+        // Don't allow decrementing below zero
         if (_val > 1) {
           _qty = parseFloat(_val) - 1;
         } else {
           _qty = 1;
         }
       }
-      _parent.find('.qty__number').val(_qty);
+      _this.parents('.js-qty').find('input').val(_qty);
     });
   }
 
   // --- init
   const init = () => {
-    handleChangeQty();
+    handleClickQty();
   }
 
   // --- return
@@ -37,4 +39,4 @@ const Qty = (() => {
 
 })();
 
-export default Qty;
+export default Quantity;

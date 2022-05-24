@@ -89,9 +89,9 @@ const ProductDetail = (() => {
                                   </div>
                                   <div class="fi-row">
                                     <div class="qty js-qty">
-                                      <span class="qty__dec mdi mdi-minus qtybtn"></span>
-                                      <input class="qty__number" type="number" name="qty" min="1" value="1">
-                                      <span class="qty__inc mdi mdi-plus qtybtn"></span>
+                                      <span class="qty__btn qty__btn--dec mdi mdi-minus"></span>
+                                      <input class="qty__inp js-total" type="number" min="1" name="qty" id="qty" value="1" autocomplete="off">
+                                      <span class="qty__btn qty__btn--inc mdi mdi-plus"></span>
                                     </div>
                                   </div>
                                   <div class="fi-row">

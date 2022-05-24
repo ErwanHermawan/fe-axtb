@@ -5,7 +5,7 @@
    @mixin font-icon-prop {
     display: inline-block;
     vertical-align: middle;
-    font-family: 'Datawarehouse' !important;
+    font-family: ff(icon);
     speak: never;
     font-style: normal;
     font-weight: normal;

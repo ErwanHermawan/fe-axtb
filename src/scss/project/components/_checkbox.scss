@@ -1,0 +1,79 @@
+/* ==========================================================================
+  Components checkbox
+  ========================================================================== */
+
+.checkbox {
+  display: inline-block;
+  vertical-align: top;
+  label {
+    cursor: pointer;
+  }
+  &__lbl {
+    display: inline-block;
+    vertical-align: middle;
+    padding-right: 12px;
+    line-height: 1;
+  }
+  &__desc {
+    display: inline-block;
+    vertical-align: middle;
+    @include font-size(label);
+    color: color(black, 3);
+    margin-bottom: 0;
+  }
+  &__area {
+    position: relative;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+    border: 2px solid color(grey, 1);
+    border-radius: 4px;
+    @include font-icon("\F12C", "after");
+    transition: all .3s ease;
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      background-color: color(primary, 1);
+      opacity: 0;
+      visibility: hidden;
+      transition: all .3s ease;
+    }
+    &::after {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      z-index: 2;
+      color: color(white);
+      @include font-size(label);
+      font-weight: fw(bold);
+      transform: translate(-50%, -50%);
+      opacity: 0;
+      visibility: hidden;
+      transition: all .3s ease;
+    }
+  }
+  input {
+    width: 0px;
+    height: 0px;
+    opacity: 0;
+    position: absolute;
+    appearance: none;
+    margin: 0px;
+    padding: 0px;
+    @include remove-tap-highlight;
+    &:checked + span {
+      border-color: color(primary, 1);
+      &::before,
+      &::after {
+        opacity: 1;
+        visibility: visible;
+      }
+    }
+  }
+}

@@ -39,4 +39,18 @@
       float: right;
       width: 350px;
     }
+    &__empty {
+      text-align: center;
+    }
+    &__img {
+      margin-bottom: 32px;
+    }
+    &__txt {
+      &__ttl {
+        @include font-size(h3);
+      }
+      &__desc {
+        margin-bottom: 40px;
+      }
+    }
   }

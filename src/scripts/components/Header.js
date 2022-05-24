@@ -31,27 +31,9 @@ const Header = (() => {
     if (_userData) {
       if (_userData.logged) {
         const _email = _userData.email;
-
-        $.ajax({
-          url: API_URL.orderCart,
-          type: 'POST',
-          dataType: 'JSON',
-          data: {
-            'email': _email,
-          },
-          success: function(data) {
-            let _data = data.data;
-
-            if (_data.total !== 0) {
-              const _userCart = `<span class="header__cart__total">${_data.total}</span>`
-            }
-          }
-        });
-
         const _userProfile = `<div class="header__right">
                                 <a class="header__cart" href="cart.html">
                                   <i class="mdi mdi-cart-outline"></i>
-                                  ${_userCart}
                                 </a>
                                 <div class="header__profile">
                                   <div class="header__user">
@@ -81,6 +63,31 @@ const Header = (() => {
     }
   }
 
+  const handleBadge = () => {
+    if (_userData) {
+      let _email = _userData.email,
+          _badge;
+
+      $.ajax({
+        url: API_URL.orderCart,
+        type: 'POST',
+        dataType: 'JSON',
+        data: {
+          'email': _email,
+        },
+        success: function(data) {
+          let _data = data.data;
+
+          if (_data.total !== 0) {
+            let _badge = `<span class="header__cart__total">${_data.total}</span>`
+
+            $('.header__cart').append(_badge);
+          }
+        }
+      });
+    }
+  }
+
   const handleLogout = () => {
     $('body').on('click', '.js-logout', function (e) {
       Session.remove('userData');
@@ -93,9 +100,9 @@ const Header = (() => {
   const init = () => {
     if ((_userData)) {
       handleLoginHeader();
-      handleCheckSession ();
+      handleCheckSession();
+      handleBadge();
       handleLogout();
-      handlClickCart();
     }
   }
 
