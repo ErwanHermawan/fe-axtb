@@ -16,6 +16,7 @@ import Register from "./Register";
 import Modal from "./Modal";
 import Qty from "./Qty";
 import AddToCart from "./AddToCart";
+import Note from "./Note";
 
 export {
   WinScroll,
@@ -30,5 +31,6 @@ export {
   Register,
   Modal,
   Qty,
-  AddToCart
+  AddToCart,
+  Note
 };

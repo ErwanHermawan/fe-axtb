@@ -29,7 +29,7 @@ const Quantity = (() => {
 
   // --- init
   const init = () => {
-    handleClickQty();
+    // handleClickQty();
   }
 
   // --- return

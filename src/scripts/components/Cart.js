@@ -261,75 +261,67 @@ const Cart = (() => {
     }
   }
 
-  // --- handleNote
-  const handleNote = () => {
-    // handle show note
-    $('body').on('click', '.js-show-note', (e) => {
-      let _this = $(e.currentTarget),
-      _parent = $(_this.parents('.cart__item__detail')),
-      _note = _this.parents('.cart__item__detail').find('.cart__item__desc').text(),
-      _inputEl = `<div class="cart__item__note">
-                    <label class="cart__item__label"> Tulis Catatan untuk Barang ini</label>
-                    <textarea class="cart__item__textarea js-change-note" type="text" name="note" autofocus="autofocus" maxlength="160">${_note}</textarea>
-                    <p class="cart__item__count">0/160</p>
-                  </div>`;
-
-      if (!_parent.hasClass('show-note')) {
-        _parent.addClass('show-note');
-        _parent.html(_inputEl);
-        setTimeout(() => {
-          _parent.find('textarea').focus();
-        }, 250);
-      }
-    });
-
-    // count charcter
-    $('body').on('keyup', '.js-change-note', (e) => {
-      const _this = $(e.currentTarget);
-      if (e.key === 'Enter' || e.keyCode === 13) {
-        _this.blur();
-      }
-
-      // set length character and limit
-      const _length = _this.val().length;
-      const _limit = _this.attr('maxlength');
-      $('.cart__item__count').text(_length+'/'+_limit);
-    });
-
-    // handle set note
+  // --- handleEditNote
+  const handleEditNote = () => {
+    // handleOnBlur
     $('body').on('blur', '.js-change-note', (e) => {
-      let _this = $(e.currentTarget),
-      _parent = _this.parents('.cart__item__detail'),
-      _productID = _this.parents('.cart__item__prod').attr('data-id'),
-      _note = _parent.find('.js-change-note').val(),
-      _inputEl = `<p class="cart__item__desc">${_note}</p><button class="btn-text js-show-note" type="button">Ubah</button>`;
+      const _this = $(e.currentTarget);
+      const _email = _userData.email;
+      const _productID = _this.parents('.cart__item__prod').attr('data-id');
+      const _note = _this.val();
 
-      if (_parent.hasClass('show-note')) {
-        _parent.removeClass('show-note');
-        _this.parents('.cart__item__detail').html(_inputEl);
+      const _data = {
+        'email': _email,
+        'productID': _productID,
+        'note' : _note
       }
 
-      handleEditData(_productID, _note)
+      handleEditData(_data);
     });
   }
 
-  const handleEditData = (productID, note) => {
-    const _email = _userData.email;
+  // --- handleEditQty
+  const handleEditQty = () => {
+    // handleOnClick
+    $('body').on('click', '.js-qty .qty__btn', (e) => {
+      const _this = $(e.currentTarget);
+      const _email = _userData.email;
+      const _productID = _this.parents('.cart__item__prod').attr('data-id');
+      const _value =  _this.parents('.qty').find('input').val();
+      let _total = '';
 
+      if (_this.hasClass('qty__btn--inc')) {
+        _total = parseFloat(_value) + 1;
+      } else {
+        // Don't allow decrementing below zero
+        if (_value > 1) {
+          _total = parseFloat(_value) - 1;
+        } else {
+          _total = 1;
+        }
+      }
+
+      _this.parents('.js-qty').find('input').val(_total);
+
+      const _data = {
+        'email': _email,
+        'productID': _productID,
+        'total' : _total
+      }
+
+      handleEditData(_data);
+    });
+  }
+
+  const handleEditData = (data) => {
     $.ajax({
       url: API_URL.orderEdit,
       type: 'POST',
       dataType: 'JSON',
-      data: {
-        'email': _email,
-        'productID': productID,
-        'note' : note
-      },
+      data: data,
       success: function (data) {
         if (data.code === 200) {
 
-        } else {
-          alert('Data gagal di proses!');
         }
       },
       error: (response) => {
@@ -342,9 +334,10 @@ const Cart = (() => {
   const init = () => {
     if ($('.js-cart-list').length || $('.js-show-note').length) {
       handleGetData();
-      handleNote();
-      handleDeleteCart();
       handleClickSelect();
+      handleDeleteCart ();
+      handleEditNote();
+      handleEditQty();
     }
   }
 

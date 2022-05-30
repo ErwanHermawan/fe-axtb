@@ -18,7 +18,8 @@ import {
   Register,
   Modal,
   Qty,
-  AddToCart
+  AddToCart,
+  Note
 } from 'components';
 
 // --- App
@@ -60,6 +61,7 @@ const App = (() => {
       Modal.init();
       Qty.init();
       AddToCart.init();
+      Note.init();
     })(jQuery);
   }
 
