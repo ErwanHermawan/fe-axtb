@@ -10,6 +10,7 @@
       }
       &__name {
         @include font-size(label);
+        font-weight: fw(semi-bold);
         color: color(black, 3);
         margin-bottom: 4px;
       }
@@ -21,7 +22,7 @@
     }
     &__item {
       padding: 24px 0;
-      border-bottom: 1px solid color(grey, 4);
+      border-bottom: 1px solid color(grey, 2);
       &__top {
         font-size: 0;
         margin-bottom: 24px;
@@ -29,10 +30,10 @@
           vertical-align: middle;
         }
       }
-      &__row {
+      &__prod {
         padding-bottom: 16px;
         margin-bottom: 16px;
-        border-bottom: 1px solid color(grey, 4);
+        border-bottom: 1px solid color(grey, 2);
         &:last-child {
           margin-bottom: 0;
           border-bottom: none;
@@ -80,7 +81,7 @@
           margin-right: 6px;
           padding: 2px 4px;
           color: color(primary, 1);
-          background-color: color(grey, 4);
+          background-color: color(grey, 2);
         }
       }
       &__price {

@@ -22,7 +22,9 @@ const Cart = (() => {
 
   // --- handleGetData
   const handleGetData = () => {
-    if (_userData) {
+    if (!_userData) {
+      location.href = WEB_URL.login;
+    } else {
       let _email = _userData.email;
 
       $.ajax({
@@ -37,6 +39,7 @@ const Cart = (() => {
             const _data = data.data;
             if (data.data.total > 0) {
               let _cartItem = '',
+                  _cartGroup = '',
                   _cartSummary = '',
                   _totalPriceSummary = 0,
                   _totalDiscountSummary = 0,
@@ -64,12 +67,46 @@ const Cart = (() => {
                   _elNote = `<button class="btn-text js-show-note" type="button">Tulis Catatan</button>`;
                 }
 
-                // set cart list
-                _cartItem += `<div class="cart__item" data-id="${v.id}">
+                // cart product per store
+                _cartItem += `<div class="cart__item__prod" data-id="${v.id}">
+                                <div class="cart__item__top">
+                                  <div class="checkbox">
+                                    <label class="checkbox__lbl" for="${v.id}">
+                                      <input type="checkbox" id="${v.id}" value="${v.id}" class="js-select-product" />
+                                      <span class="checkbox__area"></span>
+                                    </label>
+                                  </div>
+                                  <div class="cart__item__img">
+                                    <img class="cart__item__img__el" src="${v.image}" alt="${v.name}" />
+                                  </div>
+                                  <div class="cart__item__txt">
+                                    <h4 class="cart__item__ttl">${v.name}</h4>
+                                    ${_strDiscount}
+                                  </div>
+                                </div>
+                                <div class="cart__item__bot">
+                                  <div class="cart__item__detail">
+                                    ${_elNote}
+                                  </div>
+                                  <div class="cart__item__control">
+                                    <button class="btn-icon js-delete-product" type="button">
+                                      <i class="mdi mdi-trash-can-outline"></i>
+                                    </button>
+                                    <div class="qty js-qty">
+                                      <span class="qty__btn qty__btn--dec mdi mdi-minus"></span>
+                                      <input class="qty__inp js-total" type="number" min="1" name="qty" id="qty" value="${v.total}" autocomplete="off">
+                                      <span class="qty__btn qty__btn--inc mdi mdi-plus"></span>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>`
+
+                // cart group store
+                _cartGroup = `<div class="cart__item">
                                 <div class="cart__store">
                                   <div class="checkbox">
-                                    <label class="checkbox__lbl" for="check-store-${v.id}">
-                                      <input type="checkbox" name="check-store-${v.id}" id="check-store-${v.id}">
+                                    <label class="checkbox__lbl" for="check-store">
+                                      <input type="checkbox" name="check-store" id="check-store" class="js-select-group-products">
                                       <span class="checkbox__area"></span>
                                     </label>
                                   </div>
@@ -78,44 +115,11 @@ const Cart = (() => {
                                     <p class="cart__store__addr">Bandung </p>
                                   </div>
                                 </div>
-                                <div class="cart__item__prod">
-                                  <div class="cart__item__row">
-                                    <div class="cart__item__top">
-                                      <div class="checkbox">
-                                        <label class="checkbox__lbl" for="check-item-${v.id}">
-                                          <input type="checkbox" name="check-item-${v.id}" id="check-item-${v.id}">
-                                          <span class="checkbox__area"></span>
-                                        </label>
-                                      </div>
-                                      <div class="cart__item__img">
-                                        <img class="cart__item__img__el" src="${v.image}" alt="${v.name}">
-                                      </div>
-                                      <div class="cart__item__txt">
-                                        <h4 class="cart__item__ttl">${v.name}</h4>
-                                        ${_strDiscount}
-                                      </div>
-                                    </div>
-                                    <div class="cart__item__bot">
-                                      <div class="cart__item__detail">
-                                        ${_elNote}
-                                      </div>
-                                      <div class="cart__item__control">
-                                        <button class="btn-icon js-delete-order" type="button">
-                                          <i class="mdi mdi-trash-can-outline"></i>
-                                        </button>
-                                        <div class="qty js-qty">
-                                          <span class="qty__btn qty__btn--dec mdi mdi-minus"></span>
-                                          <input class="qty__inp js-total" type="number" min="1" name="qty" id="qty" value="${v.total}" autocomplete="off">
-                                          <span class="qty__btn qty__btn--inc mdi mdi-plus"></span>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
+                                ${_cartItem}
                               </div>`;
               });
 
-              $('.js-cart-list').html(_cartItem);
+              $('.js-cart-list').append(_cartGroup);
 
               // set cart summary
               let _elementDiscountSummary = '';
@@ -148,45 +152,155 @@ const Cart = (() => {
               $('.js-cart-summary').html(_cartSummary);
 
             } else {
-              let _cartEmpty = `<div class="cart__empty">
-                                  <div class="cart__img">
-                                    <img class="cart__img__el" src="http://localhost:3000/assets/img/dummy/empty-cart.svg" alt="empty cart">
-                                  </div>
-                                  <div class="cart__txt">
-                                    <h2 class="cart__txt__ttl">Wah, keranjang belanjamu kosong </h2>
-                                    <p class="cart__txt__desc">Yuk, isi dengan barang-barang impianmu!</p>
-                                    <a class="btn btn--primary" href="index.html">Mulai Belanja</a>
-                                  </div>
-                                </div>`;
-             $('.cart .cart__wrapper').html(_cartEmpty);
+              const _cartEmpty = `<div class="cart__empty">
+                                    <div class="cart__empty__img">
+                                      <img class="cart__empty__img__el" src="assets/img/dummy/empty-cart.svg" alt="empty cart">
+                                    </div>
+                                    <div class="cart__empty__txt">
+                                      <h2 class="cart__empty__ttl">Wah, keranjang belanjamu kosong </h2>
+                                      <p class="cart__empty__desc">Yuk, isi dengan barang-barang impianmu!</p>
+                                      <a class="btn btn--primary" href="index.html">Mulai Belanja</a>
+                                    </div>
+                                  </div>`;
+              $('.cart .cart__wrapper').html(_cartEmpty);
             }
           }
         }
       });
+    }
+  }
+
+  // --- handleClickSelect
+  const handleClickSelect = () => {
+    // select single product
+    $('body').on('click', '.js-select-product', (e) => {
+      const _checkLength = $('.js-select-product').length;
+      const _checkedLength = $('.js-select-product:checked').length;
+
+      if (_checkLength === _checkedLength) {
+        $('.js-select-all-products').prop('checked', true);
+      } else {
+        $('.js-select-all-products').prop('checked', false);
+      }
+
+      handleToggleDelete();
+    });
+
+    // select all products
+    $('body').on('click', '.js-select-all-products', (e) => {
+      const _isChecked = $(e.currentTarget).is(':checked');
+
+      if (_isChecked) {
+        $('.js-select-product').prop('checked', true);
+        $('.js-select-group-products').prop('checked', true);
+      } else {
+        $('.js-select-product').prop('checked', false);
+        $('.js-select-group-products').prop('checked', false);
+      }
+
+      handleToggleDelete();
+    });
+  }
+
+  // --- handleToggleDelete
+  const handleToggleDelete = () => {
+    const _checkLength = $('.js-select-product:checked').length;
+
+    if (_checkLength > 0) {
+      $('body').find('.js-delete-all-products').show();
     } else {
-      location.href = WEB_URL.login;
+      $('body').find('.js-delete-all-products').hide();
+    }
+  }
+
+  // --- handleDeleteCart
+  const handleDeleteCart = () => {
+    // delete single product
+    $('body').on('click', '.js-delete-product', (e) => {
+      const _productID = [$(e.currentTarget).parents('.cart__item__prod').attr('data-id')];
+
+      hanldleDeletData(_productID);
+    });
+
+    // delete multiple product
+    $('body').on('click', '.js-delete-all-products', (e) => {
+      const _productIDArray = [];
+
+      $('.js-select-product').each((i, e) => {
+        const  _value = $(e).val();
+        _productIDArray.push(_value);
+      });
+
+      hanldleDeletData(_productIDArray);
+    });
+  }
+
+  // --- hanldleDeletData
+  const hanldleDeletData = (productID) => {
+    if (confirm("Apakah anda yakin menghapus produk ini dari keranjang!")) {
+      const _email = _userData.email;
+      $.ajax({
+        url: API_URL.orderDelete,
+        type: 'POST',
+        dataType: 'JSON',
+        data: {
+          'email': _email,
+          'productID': productID
+        },
+        success: function (data) {
+          if (data.code === 200) {
+            location.reload();
+          } else {
+            alert('Data gagal di proses!');
+          }
+        },
+        error: (response) => {
+          alert('Data gagal di proses!');
+        }
+      });
     }
   }
 
   // --- handleNote
   const handleNote = () => {
+    // handle show note
     $('body').on('click', '.js-show-note', (e) => {
       let _this = $(e.currentTarget),
+      _parent = $(_this.parents('.cart__item__detail')),
       _note = _this.parents('.cart__item__detail').find('.cart__item__desc').text(),
       _inputEl = `<div class="cart__item__note">
-      <label class="cart__item__label"> Tulis Catatan untuk Barang ini</label>
-                    <textarea class="cart__item__textarea js-change-note" type="text" name="note" autofocus="autofocus" maxlength="160" style="height:42px">${_note}</textarea>
+                    <label class="cart__item__label"> Tulis Catatan untuk Barang ini</label>
+                    <textarea class="cart__item__textarea js-change-note" type="text" name="note" autofocus="autofocus" maxlength="160">${_note}</textarea>
                     <p class="cart__item__count">0/160</p>
-                    </div>`;
-      if (!_this.parents('.cart__item__detail').hasClass('show-note')) {
-        _this.parents('.cart__item__detail').addClass('show-note');
-        _this.parents('.cart__item__detail').html(_inputEl);
+                  </div>`;
+
+      if (!_parent.hasClass('show-note')) {
+        _parent.addClass('show-note');
+        _parent.html(_inputEl);
+        setTimeout(() => {
+          _parent.find('textarea').focus();
+        }, 250);
       }
     });
 
+    // count charcter
+    $('body').on('keyup', '.js-change-note', (e) => {
+      const _this = $(e.currentTarget);
+      if (e.key === 'Enter' || e.keyCode === 13) {
+        _this.blur();
+      }
+
+      // set length character and limit
+      const _length = _this.val().length;
+      const _limit = _this.attr('maxlength');
+      $('.cart__item__count').text(_length+'/'+_limit);
+    });
+
+    // handle set note
     $('body').on('blur', '.js-change-note', (e) => {
       let _this = $(e.currentTarget),
       _parent = _this.parents('.cart__item__detail'),
+      _productID = _this.parents('.cart__item__prod').attr('data-id'),
       _note = _parent.find('.js-change-note').val(),
       _inputEl = `<p class="cart__item__desc">${_note}</p><button class="btn-text js-show-note" type="button">Ubah</button>`;
 
@@ -194,90 +308,32 @@ const Cart = (() => {
         _parent.removeClass('show-note');
         _this.parents('.cart__item__detail').html(_inputEl);
       }
+
+      handleEditData(_productID, _note)
     });
   }
 
-  const handleDeleteCart = () => {
-    $('body').on('click', '.js-delete-order', (e) => {
-      const _this =$(e.currentTarget),
-            _email = _userData.email,
-            _productID = [_this.parents('.cart__item').attr('data-id')];
-      if (confirm("Apakah anda yakin menghapus produk ini dari keranjang!")) {
-        $.ajax({
-          url: API_URL.orderDelete,
-          type: 'POST',
-          dataType: 'JSON',
-          data: {
-            'email': _email,
-            'productID': _productID
-          },
-          success: function (data) {
-            if (data.code === 200) {
-              location.reload();
-            } else {
-              alert('Data gagal di proses!');
-            }
-          },
-          error: (response) => {
-            alert('Data gagal di proses!');
-          }
-        });
-      }
-    });
+  const handleEditData = (productID, note) => {
+    const _email = _userData.email;
 
-    $('.js-delete-cart').on('click', (e) => {
-      const _this =$(e.currentTarget),
-            _email = _userData.email,
-            _productID = handleCheckedCart();
-      if (confirm("Apakah anda yakin menghapus produk ini dari keranjang!")) {
-        $.ajax({
-          url: API_URL.orderDelete,
-          type: 'POST',
-          dataType: 'JSON',
-          data: {
-            'email': _email,
-            'productID': _productID
-          },
-          success: function (data) {
-            if (data.code === 200) {
-              location.reload();
-            } else {
-              alert('Data gagal di proses!');
-            }
-          },
-          error: (response) => {
-            alert('Data gagal di proses!');
-          }
-        });
-      }
-    });
-  }
+    $.ajax({
+      url: API_URL.orderEdit,
+      type: 'POST',
+      dataType: 'JSON',
+      data: {
+        'email': _email,
+        'productID': productID,
+        'note' : note
+      },
+      success: function (data) {
+        if (data.code === 200) {
 
-  const handleCountChecked = () => {
-    $('#check-all-items').on('click', (e) => {
-      if ($('#check-all-items:checked')) {
-        $('.js-delete-cart').fadeIn();
-        $('.js-cart-list input[type=checkbox]').attr('checked', 'checked');
-      } else {
-        if ($('.js-cart-list input[type=checkbox]').is(":checked")) {
-          $('.js-cart-list input[type=checkbox]').removeAttr('checked');
-        }
-        $('.js-delete-cart').fadeOut();
-      }
-    });
-
-    $('body').on('click', '.js-cart-list input[type=checkbox]', (e) => {
-      const _checkbox = $('.js-cart-list input[type=checkbox]'),
-            _checked = $('.js-cart-list input:checked');
-      if (_checked) {
-        $('.js-delete-cart').fadeIn();
-        if (_checked.length === _checkbox.length) {
-          $('#check-all-items').attr('checked', 'checked');
         } else {
-          $('#check-all-items').removeAttr('checked');
+          alert('Data gagal di proses!');
         }
-      } else {
-        $('.js-delete-cart').fadeOut();
+      },
+      error: (response) => {
+        alert('Data gagal di proses!');
       }
     });
   }
@@ -288,7 +344,7 @@ const Cart = (() => {
       handleGetData();
       handleNote();
       handleDeleteCart();
-      handleCountChecked();
+      handleClickSelect();
     }
   }
 

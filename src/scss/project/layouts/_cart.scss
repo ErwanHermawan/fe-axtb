@@ -6,19 +6,21 @@
     padding: 48px 0;
     &__ttl {
       @include font-size(h4);
-      padding-bottom: 12px;
+      padding-bottom: 16px;
       margin-bottom: 0;
-      border-bottom: 2px solid color(grey, 2);
     }
     &__head {
-      padding-bottom: 12px;
       border-bottom: 2px solid color(grey, 2);
+      padding-bottom: 12px;
       @include clearfix;
       &__left {
         float: left;
       }
       &__right {
         float: right;
+        .btn-text {
+          display: none;
+        }
       }
     }
     &__wrapper {
@@ -41,11 +43,9 @@
     }
     &__empty {
       text-align: center;
-    }
-    &__img {
-      margin-bottom: 32px;
-    }
-    &__txt {
+      &__img {
+        margin-bottom: 32px;
+      }
       &__ttl {
         @include font-size(h3);
       }

@@ -14,5 +14,6 @@ export const API_URL = {
   },
   orderCart: `${URL_BASE}v1/order/cart`,
   orderAdd: `${URL_BASE}v1/order/add`,
-  orderDelete: `${URL_BASE}v1/order/delete`
+  orderDelete: `${URL_BASE}v1/order/delete`,
+  orderEdit: `${URL_BASE}v1/order/edit`
 }

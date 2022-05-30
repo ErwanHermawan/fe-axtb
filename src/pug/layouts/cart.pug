@@ -19,14 +19,14 @@
       //-     | Mulai Belanja
       .cart__left
         .cart__head
-          h1.text__ttl
+          h1.cart__ttl
             | Keranjang
           .cart__head__left
             .checkbox
               ='\n'
               label.checkbox__lbl(for="check-all-items")
                 ='\n'
-                input(type='checkbox' id='check-all-items')/
+                input(type='checkbox' id='check-all-items' class='js-select-all-products')/
                 ='\n'
                 span.checkbox__area
                 ='\n'
@@ -35,7 +35,7 @@
                 | Pilih Semua
           .cart__head__right
             ='\n'
-            button.btn-text.js-delete-cart(type='button')
+            button.btn-text.js-delete-all-products(type='button')
               | Hapus
         .cart__list.js-cart-list
           //- each val, idx in [0,1,2,3]
