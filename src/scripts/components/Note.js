@@ -50,7 +50,7 @@ const Note = (() => {
     $('body').on('blur', '.js-change-note', (e) => {
       let _this = $(e.currentTarget),
       _parent = _this.parents('.cart__item__detail'),
-      _note = _parent.find('.js-change-note').val(),
+      _note = _parent.find('.js-change-note').val().trim(),
       _inputEl = `<p class="cart__item__desc">${_note}</p><button class="btn-text js-show-note" type="button">Ubah</button>`;
 
       if (_parent.hasClass('show-note')) {

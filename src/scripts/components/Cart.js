@@ -25,7 +25,7 @@ const Cart = (() => {
     if (!_userData) {
       location.href = WEB_URL.login;
     } else {
-      let _email = _userData.email;
+      const _email = _userData.email;
 
       $.ajax({
         url: API_URL.orderCart,
@@ -121,36 +121,36 @@ const Cart = (() => {
 
               $('.js-cart-list').append(_cartGroup);
 
-              // set cart summary
-              let _elementDiscountSummary = '';
-              let _grandTotalSummary = _totalPriceSummary;
-              if (_totalDiscountSummary !== 0) {
-                _elementDiscountSummary = `<li class="cart__summary__item">
-                                            <p class="cart__summary__txt__left">Total Diskon Barang</p>
-                                            <p class="cart__summary__txt__right">${Currency.idr_format(_totalDiscountSummary)}</p>
-                                          </li>`;
-                _grandTotalSummary -= _totalDiscountSummary;
-              }
+              // // set cart summary
+              // let _elementDiscountSummary = '';
+              // let _grandTotalSummary = _totalPriceSummary;
+              // if (_totalDiscountSummary !== 0) {
+              //   _elementDiscountSummary = `<li class="cart__summary__item">
+              //                               <p class="cart__summary__txt__left">Total Diskon Barang</p>
+              //                               <p class="cart__summary__txt__right">${Currency.idr_format(_totalDiscountSummary)}</p>
+              //                             </li>`;
+              //   _grandTotalSummary -= _totalDiscountSummary;
+              // }
 
-              _cartSummary += `<div class="cart__summary">
-                                <h4 class="cart__summary__ttl">Ringkasan belanja</h4>
-                                <ul class="cart__summary__list">
-                                  <li class="cart__summary__item">
-                                    <p class="cart__summary__txt__left">Total Harga (${_data.total} barang)</p>
-                                    <p class="cart__summary__txt__right">${Currency.idr_format(_totalPriceSummary)}</p>
-                                  </li>
-                                  ${_elementDiscountSummary}
-                                </ul>
-                                <div class="cart__summary__result">
-                                  <div class="cart__summary__txt">
-                                    <p class="cart__summary__txt__left">Total Harga</p>
-                                    <p class="cart__summary__txt__right">${Currency.idr_format(_grandTotalSummary)}</p>
-                                  </div><button class="btn btn--primary btn--block" type="button">Beli (${_data.total})</button>
-                                </div>
-                              </div>`;
+              // _cartSummary += `<div class="cart__summary">
+              //                   <h4 class="cart__summary__ttl">Ringkasan belanja</h4>
+              //                   <ul class="cart__summary__list">
+              //                     <li class="cart__summary__item">
+              //                       <p class="cart__summary__txt__left">Total Harga (${_data.total} barang)</p>
+              //                       <p class="cart__summary__txt__right">${Currency.idr_format(_totalPriceSummary)}</p>
+              //                     </li>
+              //                     ${_elementDiscountSummary}
+              //                   </ul>
+              //                   <div class="cart__summary__result">
+              //                     <div class="cart__summary__txt">
+              //                       <p class="cart__summary__txt__left">Total Harga</p>
+              //                       <p class="cart__summary__txt__right">${Currency.idr_format(_grandTotalSummary)}</p>
+              //                     </div><button class="btn btn--primary btn--block" type="button">Beli (${_data.total})</button>
+              //                   </div>
+              //                 </div>`;
 
-              $('.js-cart-summary').html(_cartSummary);
-
+              // $('.js-cart-summary').html(_cartSummary);
+              handleSummary();
             } else {
               const _cartEmpty = `<div class="cart__empty">
                                     <div class="cart__empty__img">
@@ -168,6 +168,47 @@ const Cart = (() => {
         }
       });
     }
+  }
+
+  const handleSummary = () => {
+    // set cart summary
+    let totalProduct = 0;
+    let _totalPriceSummary = 0;
+    let _totalDiscountSummary = 0;
+    let _grandTotalPriceSummary = 0;
+    let _elementDiscountSummary = '';
+
+    $.each($('.cart__item__prod'), (i, e) => {
+      const _item = $(e);
+      const _total = _item.find('.js-total').val();
+      console.log(_total);
+    });
+    // if (_totalDiscountSummary !== 0) {
+    //   _elementDiscountSummary = `<li class="cart__summary__item">
+    //                               <p class="cart__summary__txt__left">Total Diskon Barang</p>
+    //                               <p class="cart__summary__txt__right">${Currency.idr_format(_totalDiscountSummary)}</p>
+    //                             </li>`;
+    //   _grandTotalSummary -= _totalDiscountSummary;
+    // }
+
+    // _cartSummary += `<div class="cart__summary">
+    //                   <h4 class="cart__summary__ttl">Ringkasan belanja</h4>
+    //                   <ul class="cart__summary__list">
+    //                     <li class="cart__summary__item">
+    //                       <p class="cart__summary__txt__left">Total Harga (${_data.total} barang)</p>
+    //                       <p class="cart__summary__txt__right">${Currency.idr_format(_totalPriceSummary)}</p>
+    //                     </li>
+    //                     ${_elementDiscountSummary}
+    //                   </ul>
+    //                   <div class="cart__summary__result">
+    //                     <div class="cart__summary__txt">
+    //                       <p class="cart__summary__txt__left">Total Harga</p>
+    //                       <p class="cart__summary__txt__right">${Currency.idr_format(_grandTotalSummary)}</p>
+    //                     </div><button class="btn btn--primary btn--block" type="button">Beli (${_data.total})</button>
+    //                   </div>
+    //                 </div>`;
+
+    // $('.js-cart-summary').html(_cartSummary);
   }
 
   // --- handleClickSelect
@@ -236,7 +277,7 @@ const Cart = (() => {
   }
 
   // --- hanldleDeletData
-  const hanldleDeletData = (productID) => {
+  const hanldleDeletData = (pProductID) => {
     if (confirm("Apakah anda yakin menghapus produk ini dari keranjang!")) {
       const _email = _userData.email;
       $.ajax({
@@ -245,11 +286,11 @@ const Cart = (() => {
         dataType: 'JSON',
         data: {
           'email': _email,
-          'productID': productID
+          'productID': pProductID
         },
         success: function (data) {
           if (data.code === 200) {
-            location.reload();
+            // location.reload();
           } else {
             alert('Data gagal di proses!');
           }
@@ -282,7 +323,7 @@ const Cart = (() => {
 
   // --- handleEditQty
   const handleEditQty = () => {
-    // handleOnClick
+    // handleClick
     $('body').on('click', '.js-qty .qty__btn', (e) => {
       const _this = $(e.currentTarget);
       const _email = _userData.email;
@@ -310,6 +351,23 @@ const Cart = (() => {
       }
 
       handleEditData(_data);
+    });
+
+    // handleInput
+    $('body').on('keyup', '.js-total', (e) => {
+      const _this = $(e.currentTarget);
+      const _value = _this.val();
+      const _email = _userData.email;
+      const _productID = _this.parents('.cart__item__prod').attr('data-id');
+      const _data = {
+        'email': _email,
+        'productID': _productID,
+        'total' : _value
+      }
+
+      if (_value > 0) {
+        handleEditData(_data);
+      }
     });
   }
 
