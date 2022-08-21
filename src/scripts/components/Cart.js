@@ -4,16 +4,10 @@
 --------------------------------------------------------------------------------- */
 
 // --- variables
-import {
-  API_URL,
-  WEB_URL
-} from 'variables';
+import { API_URL, WEB_URL } from 'variables';
 
 // --- utilities
-import {
-  Session,
-  Currency
-} from 'utilities';
+import { Session, Currency } from 'utilities';
 
 // --- Cart
 const Cart = (() => {
@@ -32,32 +26,37 @@ const Cart = (() => {
         type: 'POST',
         dataType: 'JSON',
         data: {
-          'email': _email,
+          email: _email
         },
-        success: function(data) {
+        success: function (data) {
           if (data.code === 200) {
             const _data = data.data;
             if (data.data.total > 0) {
               let _cartItem = '',
-                  _cartGroup = '',
-                  _cartSummary = '',
-                  _totalPriceSummary = 0,
-                  _totalDiscountSummary = 0,
-                  _elNote = '';
+                _cartGroup = '',
+                _cartSummary = '',
+                _totalPriceSummary = 0,
+                _totalDiscountSummary = 0,
+                _elNote = '';
 
               $.each(_data.list, (i, v) => {
-
                 // handle discount
-                let _strDiscount = `<p class="cart__item__price">${Currency.idr_format(v.price)}</p>`;
+                let _strDiscount = `<p class="cart__item__price">${Currency.idr_format(
+                  v.price
+                )}</p>`;
                 if (v.discount !== 0) {
-                  const _totalDiscount = v.discount * v.price / 100;
+                  const _totalDiscount = (v.discount * v.price) / 100;
                   const _priceDiscount = v.price - _totalDiscount;
-                  _totalDiscountSummary += (_totalDiscount * v.total);
-                  _strDiscount = `<p class="cart__item__discount"><span>${v.discount}%</span>${Currency.idr_format(v.price)}</p>
-                                  <p class="cart__item__price">${Currency.idr_format(_priceDiscount)}</p>`;
+                  _totalDiscountSummary += _totalDiscount * v.total;
+                  _strDiscount = `<p class="cart__item__discount"><span>${
+                    v.discount
+                  }%</span>${Currency.idr_format(v.price)}</p>
+                                  <p class="cart__item__price">${Currency.idr_format(
+                                    _priceDiscount
+                                  )}</p>`;
                 }
 
-                _totalPriceSummary += (v.price * v.total);
+                _totalPriceSummary += v.price * v.total;
 
                 // handle note
                 if (v.note) {
@@ -99,7 +98,7 @@ const Cart = (() => {
                                     </div>
                                   </div>
                                 </div>
-                              </div>`
+                              </div>`;
 
                 // cart group store
                 _cartGroup = `<div class="cart__item">
@@ -168,7 +167,7 @@ const Cart = (() => {
         }
       });
     }
-  }
+  };
 
   const handleSummary = () => {
     // set cart summary
@@ -209,7 +208,7 @@ const Cart = (() => {
     //                 </div>`;
 
     // $('.js-cart-summary').html(_cartSummary);
-  }
+  };
 
   // --- handleClickSelect
   const handleClickSelect = () => {
@@ -241,7 +240,7 @@ const Cart = (() => {
 
       handleToggleDelete();
     });
-  }
+  };
 
   // --- handleToggleDelete
   const handleToggleDelete = () => {
@@ -252,13 +251,15 @@ const Cart = (() => {
     } else {
       $('body').find('.js-delete-all-products').hide();
     }
-  }
+  };
 
   // --- handleDeleteCart
   const handleDeleteCart = () => {
     // delete single product
     $('body').on('click', '.js-delete-product', (e) => {
-      const _productID = [$(e.currentTarget).parents('.cart__item__prod').attr('data-id')];
+      const _productID = [
+        $(e.currentTarget).parents('.cart__item__prod').attr('data-id')
+      ];
 
       hanldleDeletData(_productID);
     });
@@ -268,25 +269,25 @@ const Cart = (() => {
       const _productIDArray = [];
 
       $('.js-select-product').each((i, e) => {
-        const  _value = $(e).val();
+        const _value = $(e).val();
         _productIDArray.push(_value);
       });
 
       hanldleDeletData(_productIDArray);
     });
-  }
+  };
 
   // --- hanldleDeletData
   const hanldleDeletData = (pProductID) => {
-    if (confirm("Apakah anda yakin menghapus produk ini dari keranjang!")) {
+    if (confirm('Apakah anda yakin menghapus produk ini dari keranjang!')) {
       const _email = _userData.email;
       $.ajax({
         url: API_URL.orderDelete,
         type: 'POST',
         dataType: 'JSON',
         data: {
-          'email': _email,
-          'productID': pProductID
+          email: _email,
+          productID: pProductID
         },
         success: function (data) {
           if (data.code === 200) {
@@ -300,7 +301,7 @@ const Cart = (() => {
         }
       });
     }
-  }
+  };
 
   // --- handleEditNote
   const handleEditNote = () => {
@@ -312,14 +313,14 @@ const Cart = (() => {
       const _note = _this.val();
 
       const _data = {
-        'email': _email,
-        'productID': _productID,
-        'note' : _note
-      }
+        email: _email,
+        productID: _productID,
+        note: _note
+      };
 
       handleEditData(_data);
     });
-  }
+  };
 
   // --- handleEditQty
   const handleEditQty = () => {
@@ -328,7 +329,7 @@ const Cart = (() => {
       const _this = $(e.currentTarget);
       const _email = _userData.email;
       const _productID = _this.parents('.cart__item__prod').attr('data-id');
-      const _value =  _this.parents('.qty').find('input').val();
+      const _value = _this.parents('.qty').find('input').val();
       let _total = '';
 
       if (_this.hasClass('qty__btn--inc')) {
@@ -345,10 +346,10 @@ const Cart = (() => {
       _this.parents('.js-qty').find('input').val(_total);
 
       const _data = {
-        'email': _email,
-        'productID': _productID,
-        'total' : _total
-      }
+        email: _email,
+        productID: _productID,
+        total: _total
+      };
 
       handleEditData(_data);
     });
@@ -360,16 +361,16 @@ const Cart = (() => {
       const _email = _userData.email;
       const _productID = _this.parents('.cart__item__prod').attr('data-id');
       const _data = {
-        'email': _email,
-        'productID': _productID,
-        'total' : _value
-      }
+        email: _email,
+        productID: _productID,
+        total: _value
+      };
 
       if (_value > 0) {
         handleEditData(_data);
       }
     });
-  }
+  };
 
   const handleEditData = (data) => {
     $.ajax({
@@ -379,31 +380,29 @@ const Cart = (() => {
       data: data,
       success: function (data) {
         if (data.code === 200) {
-
         }
       },
       error: (response) => {
         alert('Data gagal di proses!');
       }
     });
-  }
+  };
 
   // --- init
   const init = () => {
     if ($('.js-cart-list').length || $('.js-show-note').length) {
       handleGetData();
       handleClickSelect();
-      handleDeleteCart ();
+      handleDeleteCart();
       handleEditNote();
       handleEditQty();
     }
-  }
+  };
 
   // --- return
   return {
     init
-  }
-
+  };
 })();
 
 export default Cart;

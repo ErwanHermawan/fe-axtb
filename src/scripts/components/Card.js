@@ -8,7 +8,7 @@ const Card = (() => {
   // --- handleSet
   const handleSet = () => {
     handleCheckHeight();
-  }
+  };
 
   // --- handleCheckHeight
   const handleCheckHeight = () => {
@@ -20,7 +20,7 @@ const Card = (() => {
       }
     });
     $('.product__txt').height(_height);
-  }
+  };
 
   const handleResetHeight = () => {
     let _attr = $('.product__txt').attr('style');
@@ -29,19 +29,18 @@ const Card = (() => {
     if (typeof _attr !== 'undefined' && _attr !== false) {
       $('.product__txt').removeAttr('style');
     }
-  }
+  };
 
   // --- init
   const init = () => {
     handleSet();
-  }
+  };
 
   // --- return
   return {
     init,
     checkHeight: handleSet
-  }
-
+  };
 })();
 
 export default Card;
