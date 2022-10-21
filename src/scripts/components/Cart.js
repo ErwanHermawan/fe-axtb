@@ -180,7 +180,6 @@ const Cart = (() => {
     $.each($('.cart__item__prod'), (i, e) => {
       const _item = $(e);
       const _total = _item.find('.js-total').val();
-      console.log(_total);
     });
     // if (_totalDiscountSummary !== 0) {
     //   _elementDiscountSummary = `<li class="cart__summary__item">

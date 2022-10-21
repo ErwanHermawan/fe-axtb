@@ -4,15 +4,10 @@
 --------------------------------------------------------------------------------- */
 
 // --- variables
-import {
-  API_URL,
-  WEB_URL
-} from 'variables';
+import { API_URL, WEB_URL } from 'variables';
 
 // --- utilities
-import {
-  Session
-} from 'utilities';
+import { Session } from 'utilities';
 
 const Header = (() => {
   const _userData = JSON.parse(Session.get('userData'));
@@ -23,11 +18,24 @@ const Header = (() => {
       Session.remove('userData');
       location.href = WEB_URL.home;
     }, 1200);
-  }
-
+  };
 
   // handleLoginHeader
   const handleLoginHeader = () => {
+    const _data = {
+      api_key: '2efe458d1a9dd60ddcb0be88d36098',
+      id_mitra: '1'
+    };
+    $.ajax({
+      url: 'http://klinik.nosinsandigital.com/_API/Reference/ReferensiMedicalTreatment.php',
+      type: 'POST',
+      dataType: 'JSON',
+      data: JSON.stringify(_data),
+      success: function (response) {
+        console.log(response);
+      }
+    });
+
     if (_userData) {
       if (_userData.logged) {
         const _email = _userData.email;
@@ -61,32 +69,32 @@ const Header = (() => {
         $('.header__right').html(_userProfile);
       }
     }
-  }
+  };
 
   const handleBadge = () => {
     if (_userData) {
       let _email = _userData.email,
-          _badge;
+        _badge;
 
       $.ajax({
         url: API_URL.orderCart,
         type: 'POST',
         dataType: 'JSON',
         data: {
-          'email': _email,
+          email: _email
         },
-        success: function(data) {
+        success: function (data) {
           let _data = data.data;
 
           if (_data.total !== 0) {
-            let _badge = `<span class="header__cart__total">${_data.total}</span>`
+            let _badge = `<span class="header__cart__total">${_data.total}</span>`;
 
             $('.header__cart').append(_badge);
           }
         }
       });
     }
-  }
+  };
 
   const handleLogout = () => {
     $('body').on('click', '.js-logout', function (e) {
@@ -94,22 +102,21 @@ const Header = (() => {
       location.href = location.href = WEB_URL.home;
       e.preventDefault();
     });
-  }
+  };
 
   // - init
   const init = () => {
-    if ((_userData)) {
+    if (_userData) {
       handleLoginHeader();
       handleCheckSession();
       handleBadge();
       handleLogout();
     }
-  }
+  };
 
   return {
     init
-  }
-
+  };
 })();
 
-export default Header
+export default Header;
